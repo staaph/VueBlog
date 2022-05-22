@@ -45,17 +45,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 import uiState from '@/composables/modalState';
 import { useAuth } from '@/composables/useAuth';
 import { getAuth } from '@firebase/auth';
 
 const { toggleLoginModal } = uiState;
-
 const { login, errorMsg } = useAuth();
 
-const email = ref();
-const password = ref();
+const email: Ref<string> = ref('');
+const password: Ref<string> = ref('');
 
 const signIn = async () => {
   await login(email.value, password.value);

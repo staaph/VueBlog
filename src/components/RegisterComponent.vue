@@ -109,7 +109,7 @@
 
 <script setup lang="ts">
 import CloseIcon from '@/assets/icons/CloseIcon.vue';
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 import { useAuth } from '@/composables/useAuth';
 import uiState from '@/composables/modalState';
 import { getAuth } from '@firebase/auth';
@@ -117,12 +117,12 @@ import { getAuth } from '@firebase/auth';
 const { toggleLoginModal } = uiState;
 const { signup, errorMsg } = useAuth();
 
-const showModal = ref(false);
+const showModal: Ref<boolean> = ref(false);
 
-const username = ref();
-const email = ref();
-const password = ref();
-const confirm_password = ref();
+const username: Ref<string> = ref('');
+const email: Ref<string> = ref('');
+const password: Ref<string> = ref('');
+const confirm_password: Ref<string> = ref('');
 
 const register = async () => {
   if (password.value === confirm_password.value) {

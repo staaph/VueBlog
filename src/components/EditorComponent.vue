@@ -38,11 +38,11 @@
 <script setup lang="ts">
 import SendIcon from '@/assets/icons/SendIcon.vue';
 import PreviewComponent from '@/components/PreviewComponent.vue';
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 
-const content = ref('');
+const content: Ref<string> = ref('');
 
-const view = ref('write');
+const view: Ref<string> = ref('write');
 const setView = (value: string) => {
   view.value = value;
 };
