@@ -29,7 +29,7 @@
         </button>
       </div>
     </section>
-    <section v-if="view === 'preview'">
+    <section v-if="view === 'preview'" class="h-full">
       <PreviewComponent :content="content" />
     </section>
   </main>

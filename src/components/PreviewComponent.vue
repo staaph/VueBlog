@@ -1,8 +1,12 @@
 <template>
-  <main class="h-full">
-    <div class="overflow-scroll mt-4">
-      <div v-html="markupData" class=""></div>
-    </div>
+  <main class="w-full h-full">
+    <section class="h-full min-w-10/12 pb-4">
+      <div
+        class="h-full border border-black rounded p-3 break-all overflow-scroll"
+      >
+        <div v-html="markupData" class=""></div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -28,9 +32,10 @@ const markupData = md.render(props.content);
 
 <style scoped>
 :deep(pre) {
-  @apply rounded;
+  @apply break-all;
 }
-:deep(pre > code) {
-  @apply rounded;
+
+:deep(code) {
+  @apply rounded break-all;
 }
 </style>
