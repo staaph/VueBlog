@@ -1,0 +1,44 @@
+{
+  "articles": [
+    {
+      "author": "A blog user",
+      "title": "Why Vue 3 is so good",
+      "description": "Composition API and Composables are the future",
+      "category": "Vue",
+      "date": "28.04.2022",
+      "picture": "https://miro.medium.com/max/3920/1*oZqGznbYXJfBlvGp5gQlYQ.jpeg"
+    },
+    {
+      "author": "A blog user",
+      "title": "Vues popularity is rising",
+      "description": "According to the google stats Vue knows only one direction",
+      "category": "Vue",
+      "date": "28.04.2022",
+      "picture": "https://www.hosteurope.de/blog/wp-content/uploads/2019/05/einf%C3%BChrung-in-vue-js-abbildung1.png"
+    },
+    {
+      "author": "A blog user",
+      "title": "using VeeValidate",
+      "description": "a short guide how to use VeeValidate in combination with UI design",
+      "category": "Vue",
+      "date": "28.04.2022",
+      "picture": "https://www.towa-digital.com/app/uploads/2020/03/vue-header-1920x600.png"
+    },
+    {
+      "author": "A blog user",
+      "title": "short guide on vitest",
+      "description": "testing vue components has never been so easy and fun",
+      "category": "Vue",
+      "date": "28.04.2022",
+      "picture": "https://blog.pusher.com/wp-content/uploads/2018/03/building-external-modules-vuejs-header-800x469.png"
+    },
+    {
+      "author": "A blog user",
+      "title": "Why we prefer VueJS",
+      "description": "In a landscape where multiple frameworks coexist why choose vue?",
+      "category": "Vue",
+      "date": "28.04.2022",
+      "picture": "https://images.ctfassets.net/23aumh6u8s0i/3b3rpoEmtR7e1Lsikg4fs2/c8e621423a9e3935154a2be0f8951da3/vuejs"
+    }
+  ]
+}
