@@ -93,7 +93,7 @@
       </div>
       <div
         v-if="menuItem === 'writeArticle'"
-        class="flex flex-col w-full ml-12 mt-4"
+        class="flex flex-col w-full ml-12 mt-4 overflow-x-scroll"
       >
         <EditorComponent class="" />
       </div>
@@ -120,7 +120,7 @@ import ArticleIcon from '@/assets/icons/ArticleIcon.vue';
 import ProfileIcon from '@/assets/icons/ProfileIcon.vue';
 import SettingsIcon from '@/assets/icons/SettingsIcon.vue';
 
-import uiState from '@/composables/modalState.js';
+import uiState from '@/composables/modalState';
 import EditorComponent from '@/components/EditorComponent.vue';
 import { ref, type Ref } from 'vue';
 

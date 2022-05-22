@@ -1,6 +1,6 @@
 <template>
   <main class="w-full h-full">
-    <section class="h-full min-w-10/12 pb-4">
+    <section class="h-full pb-4">
       <div
         class="h-full border border-black rounded p-3 break-all overflow-scroll"
       >

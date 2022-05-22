@@ -22,7 +22,7 @@
 import DashboardModal from '@/views/DashboardModal.vue';
 import LoginModal from '@/views/LoginModal.vue';
 import FeaturedSection from '@/components/FeaturedSection.vue';
-import uiState from '@/composables/modalState.js';
+import uiState from '@/composables/modalState';
 
 const { isDashboardOpen, isLoginModalOpen } = uiState;
 </script>

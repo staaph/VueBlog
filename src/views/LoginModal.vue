@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import Login from '@/components/LoginComponent.vue';
 import Register from '@/components/RegisterComponent.vue';
-import uiState from '@/composables/modalState.js';
+import uiState from '@/composables/modalState';
 import CloseIcon from '@/assets/icons/CloseIcon.vue';
 import { ref } from 'vue';
 
