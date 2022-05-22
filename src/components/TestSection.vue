@@ -3,12 +3,11 @@
     <h1 class="font-bold text-2xl">Latest</h1>
     <div>
       <div
-        v-for="(data, index) in blogdata"
+        v-for="(data, key) in blogdata"
         class="grid grid-rows-6 lg:grid-rows-none lg:grid-cols-3 gap-3"
-        :key="data"
-        :class="{ 'final-padding': index === blogdata.length - 1 }"
+        :key="key"
       >
-        <div v-for="i in data" :key="i">
+        <div v-for="(i, key) in data" :key="key">
           <div class="text-center mt-2">
             <div
               class="shadow-md shadow-gray-400 rounded px-4 py-16 hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"

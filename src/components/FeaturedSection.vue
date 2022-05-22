@@ -1,5 +1,5 @@
 <template>
-  <div v-for="data in blogdata" :key="data" class="flex flex-col">
+  <div v-for="(data, key) in blogdata" :key="key" class="flex flex-col">
     <h1 class="flex mx-10 items-start justify-start font-bold text-2xl">
       Latest
     </h1>
@@ -88,5 +88,3 @@
 <script setup lang="ts">
 import blogdata from '@/blogdata.json';
 </script>
-
-<style scoped></style>

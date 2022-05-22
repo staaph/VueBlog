@@ -12,10 +12,9 @@ const props: Readonly<ExtractPropTypes<{ content: StringConstructor }>> =
   defineProps({
     content: String,
   });
-
 const md = new MarkdownIt();
 
-const markupData = md.render(props.content.toString());
+const markupData = md.render(props.content);
 </script>
 
 <style scoped></style>
