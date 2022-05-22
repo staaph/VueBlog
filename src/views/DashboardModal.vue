@@ -1,11 +1,11 @@
 <template>
-  <div class="fixed border p-8 rounded h-3/4 w-3/4 bg-white dark:bg-black">
+  <main class="fixed border p-8 rounded h-3/4 w-3/4 bg-white dark:bg-black">
     <CloseIcon
       class="absolute top-2 right-2 cursor-pointer dark:text-white text-gray-600"
       @click.prevent="toggleDashboardModal"
     />
-    <div class="flex flex-row h-full">
-      <div class="flex flex-col">
+    <section class="flex flex-row h-full">
+      <aside class="flex flex-col">
         <div
           class="overflow-y-auto overflow-x-hidden flex flex-col justify-between"
         >
@@ -84,7 +84,7 @@
             </li>
           </ul>
         </div>
-      </div>
+      </aside>
       <div
         v-if="menuItem === 'dashboard'"
         class="flex items-center justify-center h-full w-full dark:text-white"
@@ -109,8 +109,8 @@
       >
         <p>settings</p>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -122,8 +122,8 @@ import SettingsIcon from '@/assets/icons/SettingsIcon.vue';
 
 import uiState from '@/composables/modalState.js';
 import EditorComponent from '@/components/EditorComponent.vue';
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
 
 const { toggleDashboardModal } = uiState;
-const menuItem = ref('dashboard');
+const menuItem: Ref<string> = ref('dashboard');
 </script>

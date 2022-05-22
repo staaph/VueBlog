@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full h-full justify-center">
+  <main class="flex w-full h-full justify-center">
     <div
       v-if="isDashboardOpen"
       class="fixed flex justify-center w-full h-full z-50"
@@ -15,7 +15,7 @@
     <div class="justify-center flex items-start mt-12 z-0">
       <FeaturedSection />
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">

@@ -1,14 +1,13 @@
 <template>
-  <div class="bg-transparent p-3">
+  <main class="bg-transparent p-3">
     <nav class="px-3 bg-transparent flex flex-row justify-between items-center">
-      <div
+      <section
         class="md:w-1/6 w-1/12 justify-start flex text-black dark:text-white text-xl font-bold"
       >
         <router-link to="/"> VueBlog </router-link>
-      </div>
+      </section>
 
-      <div class="justify-end flex text-black dark:text-white gap-3">
-        <!-- darkmode switch on lg+ -->
+      <section class="justify-end flex text-black dark:text-white gap-3">
         <button>
           <Sun @click="toggleTheme" v-if="userTheme === 'dark'" />
           <Moon v-else @click="toggleTheme" />
@@ -18,7 +17,7 @@
         >
           <User @click.prevent="toggleUserMenu" />
         </div>
-      </div>
+      </section>
     </nav>
     <div
       v-show="isUserMenuOpen"
@@ -60,7 +59,7 @@
         Sign out
       </button>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">

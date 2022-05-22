@@ -4,7 +4,7 @@
     @submit.prevent="signIn"
   >
     <!-- EMAIL -->
-    <div class="flex flex-col gap-y-1 w-full">
+    <section class="flex flex-col gap-y-1 w-full">
       <label
         for="email"
         class="text-gray-700 dark:text-white text-sm font-medium"
@@ -17,9 +17,9 @@
         class="placeholder:text-gray-400 bg-transparent border text-gray-700 dark:text-gray-300 dark:border-gray-600 px-3 p-2 rounded-md outline-none focus:border-blue-600 dark:focus:border-blue-600"
         v-model="email"
       />
-    </div>
+    </section>
     <!-- PASSWORD -->
-    <div class="flex flex-col gap-y-1 w-full">
+    <section class="flex flex-col gap-y-1 w-full">
       <div class="flex flex-row items-center">
         <label
           for="password"
@@ -38,7 +38,7 @@
         class="placeholder:text-gray-400 bg-transparent border dark:border-gray-600 text-gray-700 dark:text-gray-300 px-3 rounded-md p-2 outline-none focus:border-blue-600 dark:focus:border-blue-600"
         v-model="password"
       />
-    </div>
+    </section>
     <div v-if="errorMsg" class="text-red-900">{{ errorMsg }}</div>
     <button class="bg-gray-700 rounded px-6 py-1.5 text-white">Login</button>
   </form>

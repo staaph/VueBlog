@@ -1,5 +1,5 @@
 <template>
-  <div
+  <main
     class="fixed border py-2 rounded-md h-5/6 w-full sm:w-2/3 lg:w-1/3 bg-white dark:bg-gray-900"
   >
     <CloseIcon
@@ -12,7 +12,7 @@
           class="overflow-y-auto overflow-x-hidden flex flex-col items-center"
         >
           <!-- LOGIN -->
-          <div v-if="showLogin">
+          <section v-if="showLogin">
             <h1
               class="flex items-center w-full justify-center font-medium text-lg mb-4 dark:text-white"
             >
@@ -29,10 +29,10 @@
                 >&nbsp;Sign up&nbsp;</span
               >instead
             </p>
-          </div>
+          </section>
 
           <!-- REGISTER -->
-          <div v-else>
+          <section v-else>
             <h1
               class="flex items-center w-full justify-center font-medium text-lg mb-4 dark:text-gray-300"
             >
@@ -47,11 +47,11 @@
                 >&nbsp;Login&nbsp;</span
               >instead
             </p>
-          </div>
+          </section>
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">

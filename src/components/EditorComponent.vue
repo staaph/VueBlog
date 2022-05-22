@@ -47,5 +47,3 @@ const setView = (value: string) => {
   view.value = value;
 };
 </script>
-
-<style scoped></style>

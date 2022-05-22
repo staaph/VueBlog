@@ -1,10 +1,10 @@
 <template>
-  <div class="dark:bg-black">
+  <main class="dark:bg-black">
     <Navbar />
     <div class="h-screen w-screen justify-center items-center">
       <router-view />
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">

@@ -118,7 +118,6 @@ const { toggleLoginModal } = uiState;
 const { signup, errorMsg } = useAuth();
 
 const showModal: Ref<boolean> = ref(false);
-
 const username: Ref<string> = ref('');
 const email: Ref<string> = ref('');
 const password: Ref<string> = ref('');
