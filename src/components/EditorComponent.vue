@@ -1,5 +1,5 @@
 <template>
-  <main class="w-full h-[91%]">
+  <main class="w-full h-[90%]">
     <section class="w-full mb-2 items-center">
       <div class="flex flex-row gap-x-5 justify-center items-center">
         <button
@@ -19,11 +19,11 @@
     <section class="flex flex-col h-full pb-4" v-if="view === 'write'">
       <textarea
         v-model="content"
-        class="h-full border border-black rounded w-full resize-none outline-none p-3 bg-white"
+        class="h-full border border-black rounded w-full resize-none outline-none p-3 dark:bg-neutral-300"
       />
       <div class="flex justify-end pt-1.5">
         <button
-          class="flex py-1 items-center rounded bg-gray-200 text-black dark:text-white px-2"
+          class="flex py-1 items-center rounded bg-gray-200 dark:bg-gray-700 text-black dark:text-white px-2"
         >
           <SendIcon class="h-5 w-5 mr-1" />Publish
         </button>

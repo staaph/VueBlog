@@ -1,9 +1,12 @@
 <template>
-  <main class="fixed border p-8 rounded h-5/6 w-3/4 bg-white dark:bg-black">
+  <main
+    class="fixed border p-8 rounded h-5/6 w-3/4 bg-white dark:bg-neutral-900"
+  >
     <CloseIcon
       class="absolute top-2 right-2 cursor-pointer dark:text-white text-gray-600"
-      @click.prevent="toggleDashboardModal"
+      @click.prevent="closeDashboard"
     />
+    <CloseWarning v-if="showWarning" />
     <section class="flex flex-row h-full">
       <aside class="flex flex-col">
         <div
@@ -124,7 +127,17 @@ import SettingsIcon from '@/assets/icons/SettingsIcon.vue';
 import uiState from '@/composables/modalState';
 import EditorComponent from '@/components/EditorComponent.vue';
 import { ref, type Ref } from 'vue';
+import CloseWarning from '../components/CloseWarning.vue';
 
-const { toggleDashboardModal } = uiState;
+const { toggleDashboardModal, isUnsaved, setShowWarning, showWarning } =
+  uiState;
 const menuItem: Ref<string> = ref('dashboard');
+
+const closeDashboard = () => {
+  if (isUnsaved.value) {
+    setShowWarning();
+  } else {
+    toggleDashboardModal();
+  }
+};
 </script>

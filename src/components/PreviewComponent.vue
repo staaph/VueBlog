@@ -2,7 +2,7 @@
   <main class="w-full h-full">
     <section class="h-full">
       <div
-        class="h-full border border-black bg-white rounded p-3 break-all overflow-scroll"
+        class="h-full border border-black bg-white dark:bg-neutral-300 rounded p-3 break-all overflow-scroll"
       >
         <div v-html="markupData" class=""></div>
       </div>
