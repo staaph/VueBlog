@@ -1,6 +1,8 @@
 <template>
   <div v-for="(data, key) in blogdata" :key="key" class="flex flex-col">
-    <h1 class="flex mx-10 items-start justify-start font-bold text-2xl">
+    <h1
+      class="flex mx-10 items-start justify-start font-bold text-2xl dark:text-white"
+    >
       Latest
     </h1>
     <div
