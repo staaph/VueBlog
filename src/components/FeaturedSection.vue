@@ -7,7 +7,7 @@
       class="grid grid-rows-6 lg:grid-rows-none lg:grid-cols-3 grid-flow-col gap-3 my-2 mx-10 text-center"
     >
       <div
-        class="shadow-md shadow-gray-400 rounded px-4 py-16 hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
+        class="shadow-md shadow-gray-400 dark:shadow-none rounded px-4 py-16 hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
         :style="`background-image:linear-gradient(to bottom, rgba(255,255,255,0.3) 0%,rgba(255,255,255,0.7) 100%), url(${data[0].picture}); background-position: center; background-size:cover `"
       >
         <div class="absolute top-2 left-2 bg-gray-400 rounded-full px-2">
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div
-        class="shadow-md shadow-gray-400 rounded px-4 py-16 hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
+        class="shadow-md shadow-gray-400 dark:shadow-none rounded px-4 py-16 hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
         :style="`background-image:linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.7) 100%), url(${data[1].picture}); background-position: center; background-size:cover;`"
       >
         <div class="absolute top-2 left-2 bg-gray-400 rounded-full px-2">
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div
-        class="shadow-md shadow-gray-400 rounded px-4 py-16 hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
+        class="shadow-md shadow-gray-400 dark:shadow-none rounded px-4 py-16 hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
         :style="`background-image:linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.7) 100%), url(${data[2].picture}); background-position: center; background-size:cover;`"
       >
         <div class="absolute top-2 left-2 bg-gray-400 rounded-full px-2">
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div
-        class="shadow-md shadow-gray-400 rounded px-4 py-16 hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
+        class="shadow-md shadow-gray-400 dark:shadow-none rounded px-4 py-16 hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
         :style="`background-image:linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.7) 100%), url(${data[3].picture}); background-position: center; background-size:cover;`"
       >
         <div class="absolute top-2 left-2 bg-gray-400 rounded-full px-2">
@@ -67,7 +67,7 @@
         </div>
       </div>
       <div
-        class="shadow-md shadow-gray-400 rounded px-4 py-16 lg:row-span-2 flex flex-col justify-center hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
+        class="shadow-md shadow-gray-400 dark:shadow-none rounded px-4 py-16 lg:row-span-2 flex flex-col justify-center hover:scale-[1.05] transition-all duration-300 cursor-pointer relative"
         :style="`background-image:linear-gradient(to bottom, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0.7) 100%), url(${data[4].picture}); background-position: center; background-size:cover;`"
       >
         <div class="absolute top-2 left-2 bg-gray-400 rounded-full px-2">

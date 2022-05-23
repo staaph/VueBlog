@@ -1,5 +1,5 @@
 <template>
-  <main class="dark:bg-black">
+  <main class="">
     <Navbar />
     <div class="h-screen w-screen justify-center items-center">
       <router-view />
