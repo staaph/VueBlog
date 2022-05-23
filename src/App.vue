@@ -2,8 +2,8 @@
   <main
     class="dark:bg-gradient-to-r dark:from-gray-700 dark:via-gray-900 dark:to-black"
   >
-    <Navbar />
     <div class="h-screen w-screen justify-center items-center">
+      <Navbar />
       <router-view />
     </div>
   </main>

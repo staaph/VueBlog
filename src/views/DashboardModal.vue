@@ -6,7 +6,6 @@
       class="absolute top-2 right-2 cursor-pointer dark:text-white text-gray-600"
       @click.prevent="closeDashboard"
     />
-    <CloseWarning v-if="showWarning" />
     <section class="flex flex-row h-full">
       <aside class="flex flex-col">
         <div
@@ -116,6 +115,10 @@
       </section>
     </section>
   </main>
+  <CloseWarning
+    v-if="showWarning"
+    class="w-screen h-screen grid place-content-center m-auto"
+  />
 </template>
 
 <script setup lang="ts">
