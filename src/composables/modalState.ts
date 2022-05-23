@@ -22,12 +22,10 @@ const toggleDashboardModal = () => {
 };
 
 const closeDashboardModal = () => {
-  if (state.isUnsaved) {
-    alert('unsaved changes');
-  } else {
+  if (!state.isUnsaved) {
     state.isDashboardOpen = !state.isDashboardOpen;
     state.isUserMenuOpen = false;
-  }
+  } 
 };
 
 const isLoginModalOpen = computed(() => state.isLoginModalOpen);
@@ -48,7 +46,7 @@ const uiState = {
   toggleLoginModal,
   toggleUserMenu,
   setUnsaved,
-  closeDashboardModal
+  closeDashboardModal,
 };
 
 export default uiState;

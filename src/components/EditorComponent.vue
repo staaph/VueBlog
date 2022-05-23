@@ -38,8 +38,8 @@
 <script setup lang="ts">
 import SendIcon from '@/assets/icons/SendIcon.vue';
 import PreviewComponent from '@/components/PreviewComponent.vue';
-import { ref, type Ref, watch } from 'vue';
 import uiState from '@/composables/modalState';
+import { ref, type Ref, watch } from 'vue';
 
 const { setUnsaved } = uiState;
 
@@ -48,7 +48,6 @@ const content: Ref<string> = ref('');
 watch(content, () => {
   if (content.value.length > 0) {
     setUnsaved(true);
-    console.log('toggle');
   } else {
     setUnsaved(false);
   }
