@@ -1,5 +1,5 @@
 <template>
-  <main class="w-full h-full">
+  <main class="w-full h-[91%]">
     <section class="w-full mb-2 items-center">
       <div class="flex flex-row gap-x-5 justify-center items-center">
         <button
@@ -38,9 +38,21 @@
 <script setup lang="ts">
 import SendIcon from '@/assets/icons/SendIcon.vue';
 import PreviewComponent from '@/components/PreviewComponent.vue';
-import { ref, type Ref } from 'vue';
+import { ref, type Ref, watch } from 'vue';
+import uiState from '@/composables/modalState';
+
+const { setUnsaved } = uiState;
 
 const content: Ref<string> = ref('');
+
+watch(content, () => {
+  if (content.value.length > 0) {
+    setUnsaved(true);
+    console.log('toggle');
+  } else {
+    setUnsaved(false);
+  }
+});
 
 const view: Ref<string> = ref('write');
 const setView = (value: string) => {

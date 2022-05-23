@@ -1,8 +1,8 @@
 <template>
-  <main class="fixed border p-8 rounded h-3/4 w-3/4 bg-white dark:bg-black">
+  <main class="fixed border p-8 rounded h-5/6 w-3/4 bg-white dark:bg-black">
     <CloseIcon
       class="absolute top-2 right-2 cursor-pointer dark:text-white text-gray-600"
-      @click.prevent="toggleDashboardModal"
+      @click.prevent="closeDashboardModal"
     />
     <section class="flex flex-row h-full">
       <aside class="flex flex-col">
@@ -85,30 +85,32 @@
           </ul>
         </div>
       </aside>
-      <div
-        v-if="menuItem === 'dashboard'"
-        class="flex items-center justify-center h-full w-full dark:text-white"
-      >
-        <p>Dashboard</p>
-      </div>
-      <div
-        v-if="menuItem === 'writeArticle'"
-        class="flex flex-col w-full ml-12 mt-4 overflow-x-scroll"
-      >
-        <EditorComponent class="" />
-      </div>
-      <div
-        v-if="menuItem === 'profile'"
-        class="flex items-center justify-center h-full w-full dark:text-white"
-      >
-        <p>profile</p>
-      </div>
-      <div
-        v-if="menuItem === 'settings'"
-        class="flex items-center justify-center h-full w-full dark:text-white"
-      >
-        <p>settings</p>
-      </div>
+      <section class="h-full w-full flex overflow-scroll">
+        <div
+          v-if="menuItem === 'dashboard'"
+          class="flex items-center justify-center h-full w-full dark:text-white"
+        >
+          <p>Dashboard</p>
+        </div>
+        <div
+          v-if="menuItem === 'writeArticle'"
+          class="w-full ml-12 mt-4 overflow-scroll"
+        >
+          <EditorComponent class="" />
+        </div>
+        <div
+          v-if="menuItem === 'profile'"
+          class="flex items-center justify-center h-full w-full dark:text-white"
+        >
+          <p>profile</p>
+        </div>
+        <div
+          v-if="menuItem === 'settings'"
+          class="flex items-center justify-center h-full w-full dark:text-white"
+        >
+          <p>settings</p>
+        </div>
+      </section>
     </section>
   </main>
 </template>
@@ -119,11 +121,10 @@ import HomeIcon from '@/assets/icons/HomeIcon.vue';
 import ArticleIcon from '@/assets/icons/ArticleIcon.vue';
 import ProfileIcon from '@/assets/icons/ProfileIcon.vue';
 import SettingsIcon from '@/assets/icons/SettingsIcon.vue';
-
 import uiState from '@/composables/modalState';
 import EditorComponent from '@/components/EditorComponent.vue';
 import { ref, type Ref } from 'vue';
 
-const { toggleDashboardModal } = uiState;
+const { closeDashboardModal } = uiState;
 const menuItem: Ref<string> = ref('dashboard');
 </script>
