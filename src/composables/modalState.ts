@@ -17,15 +17,10 @@ const setUnsaved = (flag: boolean) => {
 
 const isDashboardOpen = computed(() => state.isDashboardOpen);
 const toggleDashboardModal = () => {
+  if (!state.isUnsaved) {
   state.isDashboardOpen = !state.isDashboardOpen;
   state.isUserMenuOpen = false;
-};
-
-const closeDashboardModal = () => {
-  if (!state.isUnsaved) {
-    state.isDashboardOpen = !state.isDashboardOpen;
-    state.isUserMenuOpen = false;
-  } 
+  }
 };
 
 const isLoginModalOpen = computed(() => state.isLoginModalOpen);
@@ -35,7 +30,9 @@ const toggleLoginModal = () => {
 };
 const isUserMenuOpen = computed(() => state.isUserMenuOpen);
 const toggleUserMenu = () => {
+  if(!state.isDashboardOpen){
   state.isUserMenuOpen = !state.isUserMenuOpen;
+  }
 };
 
 const uiState = {
@@ -46,7 +43,6 @@ const uiState = {
   toggleLoginModal,
   toggleUserMenu,
   setUnsaved,
-  closeDashboardModal,
 };
 
 export default uiState;

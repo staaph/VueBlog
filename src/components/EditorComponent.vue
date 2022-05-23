@@ -40,10 +40,9 @@ import SendIcon from '@/assets/icons/SendIcon.vue';
 import PreviewComponent from '@/components/PreviewComponent.vue';
 import uiState from '@/composables/modalState';
 import { ref, type Ref, watch } from 'vue';
+import { content } from '@/composables/editorContent';
 
 const { setUnsaved } = uiState;
-
-const content: Ref<string> = ref('');
 
 watch(content, () => {
   if (content.value.length > 0) {

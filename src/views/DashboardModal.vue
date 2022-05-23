@@ -2,7 +2,7 @@
   <main class="fixed border p-8 rounded h-5/6 w-3/4 bg-white dark:bg-black">
     <CloseIcon
       class="absolute top-2 right-2 cursor-pointer dark:text-white text-gray-600"
-      @click.prevent="closeDashboardModal"
+      @click.prevent="toggleDashboardModal"
     />
     <section class="flex flex-row h-full">
       <aside class="flex flex-col">
@@ -125,6 +125,6 @@ import uiState from '@/composables/modalState';
 import EditorComponent from '@/components/EditorComponent.vue';
 import { ref, type Ref } from 'vue';
 
-const { closeDashboardModal } = uiState;
+const { toggleDashboardModal } = uiState;
 const menuItem: Ref<string> = ref('dashboard');
 </script>

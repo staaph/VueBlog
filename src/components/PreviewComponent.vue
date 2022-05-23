@@ -1,6 +1,6 @@
 <template>
   <main class="w-full h-full">
-    <section class="h-full pb-4">
+    <section class="h-full">
       <div
         class="h-full border border-black rounded p-3 break-all overflow-scroll"
       >
@@ -12,11 +12,10 @@
 
 <script setup lang="ts">
 import MarkdownIt from 'markdown-it';
+import type { ExtractPropTypes } from 'vue';
 import 'highlight.js/styles/github-dark-dimmed.css';
 import highlightjs from 'highlight.js';
 import markdownHighlight from 'markdown-it-highlightjs';
-
-import type { ExtractPropTypes } from 'vue';
 
 const props: Readonly<ExtractPropTypes<{ content: StringConstructor }>> =
   defineProps({
