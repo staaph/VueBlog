@@ -31,7 +31,7 @@ export default {
           min_value: `${ctx.field} is too low`,
           max_value: `${ctx.field} is too high`,
           passwords_mismatch: "The passwords don't match",
-          confirm_password: 'Please confirm your password',
+          confirm_password: 'confirm your password',
           tos: 'You must accept the Terms of Service',
           login: 'Incorrect login credentials',
         };

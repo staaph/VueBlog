@@ -92,7 +92,7 @@
         type="checkbox"
         class="rounded-sm outline-none"
         required
-        :class="{ 'border border-red-600': errors.tos }"
+        :class="{ 'border border-red-600 ml-10': errors.tos }"
       />
       <label class="dark:text-white ml-2"
         >I accept the
