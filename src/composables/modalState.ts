@@ -1,12 +1,14 @@
-import { reactive, computed } from 'vue';
+import { reactive, computed, ref, type Ref } from 'vue';
 
 const state = reactive({
   isDashboardOpen: false,
   isUserMenuOpen: false,
   isLoginModalOpen: false,
   isUnsaved: false,
-  showWarning: false
+  showWarning: false,
 });
+
+const showTosModal: Ref<boolean> = ref(false);
 
 /**
  * in case of unchanged changes, this should be toggled
@@ -54,6 +56,7 @@ const uiState = {
   toggleLoginModal,
   toggleUserMenu,
   setUnsaved,
+  showTosModal
 };
 
 export default uiState;

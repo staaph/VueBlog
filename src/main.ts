@@ -3,6 +3,7 @@ import App from '@/App.vue';
 import router from '@/router';
 import '@/assets/index.css';
 import { auth } from '@/firebase/config';
+import VeeValidatePlugin from '@/plugin/validation.js'
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -30,6 +31,7 @@ let app;
 auth.onAuthStateChanged(() => {
   app = createApp(App);
   app.use(router);
+  app.use(VeeValidatePlugin)
   app.component('font-awesome-icon', FontAwesomeIcon);
 
   app.mount('#app');

@@ -1,127 +1,137 @@
 <template>
-  <form
+  <vee-form
     class="flex flex-col gap-y-5 justify-center items-center"
     @submit.prevent="register"
+    v-slot="{ errors }"
+    :validation-schema="schema"
   >
     <!-- USERNAME -->
-    <div class="flex flex-col gap-y-1 w-full">
-      <label
-        for="Username"
-        class="text-gray-700 dark:text-white text-sm font-medium"
-        >Username</label
-      >
-      <input
+    <section class="flex flex-col gap-y-1 w-full">
+      <div class="flex flex-row justify-between">
+        <label
+          for="Username"
+          class="text-gray-700 dark:text-white text-sm font-medium"
+          >Username</label
+        >
+        <p class="text-sm text-red-600">{{ errors.username }}</p>
+      </div>
+      <vee-field
+        name="username"
         type="text"
         required
         placeholder="johndoe"
         v-model="username"
-        class="placeholder:text-gray-400 bg-transparent border text-gray-700 dark:text-gray-300 dark:border-gray-600 px-3 p-2 rounded-md outline-none focus:border-blue-600 dark:focus:border-blue-600"
+        class="input"
+        :class="{ 'border border-red-600': errors.username }"
       />
-    </div>
+    </section>
     <!-- EMAIL -->
-    <div class="flex flex-col gap-y-1 w-full">
-      <label
-        for="email"
-        class="text-gray-700 dark:text-white text-sm font-medium"
-        >E-Mail</label
-      >
-      <input
+    <section class="flex flex-col gap-y-1 w-full">
+      <div class="flex flex-row justify-between">
+        <label
+          for="email"
+          class="text-gray-700 dark:text-white text-sm font-medium"
+          >E-Mail</label
+        >
+        <p class="text-sm text-red-600">{{ errors.email }}</p>
+      </div>
+      <vee-field
+        name="email"
         type="email"
         required
         placeholder="john.doe@email.com"
         v-model="email"
-        class="placeholder:text-gray-400 bg-transparent border text-gray-700 dark:text-gray-300 dark:border-gray-600 px-3 p-2 rounded-md outline-none focus:border-blue-600 dark:focus:border-blue-600"
+        class="input"
+        :class="{ 'border border-red-600': errors.email }"
       />
-    </div>
+    </section>
     <!-- PASSWORD -->
-    <div class="flex flex-col gap-y-1 w-full">
-      <label
-        for="password"
-        class="text-sm font-medium text-gray-700 dark:text-white"
-        >Password</label
-      >
-
-      <input
+    <section class="flex flex-col gap-y-1 w-full">
+      <div class="flex flex-row justify-between">
+        <label
+          for="password"
+          class="text-sm font-medium text-gray-700 dark:text-white"
+          >Password</label
+        >
+        <p class="text-sm text-red-600">{{ errors.password }}</p>
+      </div>
+      <vee-field
+        name="password"
         type="password"
         placeholder="Enter your password"
         required
         v-model="password"
-        class="placeholder:text-gray-400 bg-transparent border dark:border-gray-600 text-gray-700 dark:text-gray-300 px-3 rounded-md p-2 outline-none focus:border-blue-600 dark:focus:border-blue-600"
+        class="input"
+        :class="{ 'border border-red-600': errors.password }"
       />
-    </div>
+    </section>
     <!-- CONFIRM PASSWORD -->
-    <div class="flex flex-col gap-y-1 w-full">
-      <label
-        for="password"
-        class="text-sm font-medium text-gray-700 dark:text-white"
-        >Password</label
-      >
-      <input
+    <section class="flex flex-col gap-y-1 w-full">
+      <div class="flex flex-row justify-between">
+        <label
+          for="password"
+          class="text-sm font-medium text-gray-700 dark:text-white"
+          >Confirm Password</label
+        >
+        <p class="text-sm text-red-600">{{ errors.confirm_password }}</p>
+      </div>
+      <vee-field
+        name="confirm_password"
         type="password"
         placeholder="Confirm your password"
         required
         v-model="confirm_password"
-        class="placeholder:text-gray-400 bg-transparent border dark:border-gray-600 text-gray-700 dark:text-gray-300 px-3 rounded-md p-2 outline-none focus:border-blue-600 dark:focus:border-blue-600"
+        class="input"
+        :class="{ 'border border-red-600': errors.confirm_password }"
       />
-    </div>
-    <div>
-      <input type="checkbox" required />
+    </section>
+    <!-- TOS -->
+    <section>
+      <vee-field
+        name="tos"
+        type="checkbox"
+        class="rounded-sm outline-none"
+        required
+        :class="{ 'border border-red-600': errors.tos }"
+      />
       <label class="dark:text-white ml-2"
         >I accept the
-        <button @click.prevent="showModal = !showModal" class="hover:underline">
+        <button
+          @click.prevent="showTosModal = !showTosModal"
+          class="hover:underline"
+        >
           Terms of Service
         </button></label
       >
-    </div>
-    <div
-      v-if="showModal"
-      class="fixed z-10 px-6 py-4 flex flex-col max-h-96 max-w-md rounded overflow-scroll dark:bg-gray-700 bg-white border border-black dark:border-white"
-    >
-      <CloseIcon
-        @click.prevent="showModal = !showModal"
-        class="absolute top-2 right-2 cursor-pointer dark:text-white"
-      />
-      <h1 class="dark:text-white font-bold my-2">Terms of Service</h1>
-      <p class="dark:text-white">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-        eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-        voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-        amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-        ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-        elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-        aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-        dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-        est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-        justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet.
-      </p>
-    </div>
+    </section>
+    <TosModal />
     <div v-if="errorMsg" class="text-red-900">{{ errorMsg }}</div>
     <button class="bg-gray-700 rounded px-6 py-1.5 text-white">Signup</button>
-  </form>
+  </vee-form>
 </template>
 
 <script setup lang="ts">
-import CloseIcon from '@/assets/icons/CloseIcon.vue';
+import TosModal from '@/components/TosModal.vue';
 import { ref, type Ref } from 'vue';
+import { getAuth } from '@firebase/auth';
 import { useAuth } from '@/composables/useAuth';
 import uiState from '@/composables/modalState';
-import { getAuth } from '@firebase/auth';
 
-const { toggleLoginModal } = uiState;
+const { toggleLoginModal, showTosModal } = uiState;
 const { signup, errorMsg } = useAuth();
 
-const showModal: Ref<boolean> = ref(false);
 const username: Ref<string> = ref('');
 const email: Ref<string> = ref('');
 const password: Ref<string> = ref('');
 const confirm_password: Ref<string> = ref('');
+
+const schema = {
+  email: 'required|email',
+  username: 'required|min:3|max:20',
+  password: 'min:8|required',
+  confirm_password: 'passwords_mismatch:@password|confirm_password',
+  tos: 'tos',
+};
 
 const register = async () => {
   if (password.value === confirm_password.value) {
@@ -134,3 +144,9 @@ const register = async () => {
   }
 };
 </script>
+
+<style scoped>
+.input {
+  @apply placeholder:text-gray-400 bg-transparent border text-gray-700 dark:text-gray-300 dark:border-gray-600 px-3 p-2 rounded-md outline-none focus:border-blue-600 dark:focus:border-blue-600;
+}
+</style>
