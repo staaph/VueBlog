@@ -32,6 +32,7 @@
 
 <script setup lang="ts">
 import uiState from '@/composables/modalState';
+import CloseIcon from '@/assets/icons/CloseIcon.vue';
 
 const { showTosModal } = uiState;
 </script>

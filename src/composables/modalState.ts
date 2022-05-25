@@ -1,4 +1,5 @@
 import { reactive, computed, ref, type Ref } from 'vue';
+import { getAuth } from 'firebase/auth';
 
 const state = reactive({
   isDashboardOpen: false,
@@ -26,7 +27,7 @@ const setShowWarning = () =>{
 
 const isDashboardOpen = computed(() => state.isDashboardOpen);
 const toggleDashboardModal = () => {
-  if (!state.isUnsaved) {
+  if (!state.isUnsaved && getAuth().currentUser != null) {
   state.isDashboardOpen = !state.isDashboardOpen;
   state.isUserMenuOpen = false;
   }

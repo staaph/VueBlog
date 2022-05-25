@@ -1,7 +1,7 @@
 <template>
   <vee-form
     class="flex flex-col gap-y-5 justify-center items-center"
-    @submit.prevent="register"
+    @submit="register"
     v-slot="{ errors }"
     :validation-schema="schema"
   >
@@ -18,7 +18,6 @@
       <vee-field
         name="username"
         type="text"
-        required
         placeholder="johndoe"
         v-model="username"
         class="input"
@@ -38,7 +37,6 @@
       <vee-field
         name="email"
         type="email"
-        required
         placeholder="john.doe@email.com"
         v-model="email"
         class="input"
@@ -59,7 +57,6 @@
         name="password"
         type="password"
         placeholder="Enter your password"
-        required
         v-model="password"
         class="input"
         :class="{ 'border border-red-600': errors.password }"
@@ -79,7 +76,6 @@
         name="confirm_password"
         type="password"
         placeholder="Confirm your password"
-        required
         v-model="confirm_password"
         class="input"
         :class="{ 'border border-red-600': errors.confirm_password }"
@@ -91,7 +87,6 @@
         name="tos"
         type="checkbox"
         class="rounded-sm outline-none"
-        required
         :class="{ 'border border-red-600 ml-10': errors.tos }"
       />
       <label class="dark:text-white ml-2"

@@ -1,7 +1,8 @@
 <template>
-  <form
+  <vee-form
     class="flex flex-col gap-y-5 justify-center items-center"
-    @submit.prevent="signIn"
+    @submit="signIn"
+    v-slot="{ errors }"
   >
     <!-- EMAIL -->
     <section class="flex flex-col gap-y-1 w-full">
@@ -10,13 +11,15 @@
         class="text-gray-700 dark:text-white text-sm font-medium"
         >E-Mail</label
       >
-      <input
+      <vee-field
         type="email"
-        required
+        name="email"
         placeholder="john.doe@email.com"
-        class="placeholder:text-gray-400 bg-transparent border text-gray-700 dark:text-gray-300 dark:border-gray-600 px-3 p-2 rounded-md outline-none focus:border-blue-600 dark:focus:border-blue-600"
+        class="input"
         v-model="email"
+        :class="{ 'border border-red-600': errors.email }"
       />
+      <p class="text-sm text-red-600">{{ errors.email }}</p>
     </section>
     <!-- PASSWORD -->
     <section class="flex flex-col gap-y-1 w-full">
@@ -31,17 +34,19 @@
           >Forgot password?</span
         >
       </div>
-      <input
+      <vee-field
         type="password"
+        name="password"
         placeholder="Enter your password"
-        required
-        class="placeholder:text-gray-400 bg-transparent border dark:border-gray-600 text-gray-700 dark:text-gray-300 px-3 rounded-md p-2 outline-none focus:border-blue-600 dark:focus:border-blue-600"
+        class="input"
         v-model="password"
+        :class="{ 'border border-red-600': errors.password }"
       />
+      <p class="text-sm text-red-600">{{ errors.password }}</p>
     </section>
     <div v-if="errorMsg" class="text-red-900">{{ errorMsg }}</div>
     <button class="bg-gray-700 rounded px-6 py-1.5 text-white">Login</button>
-  </form>
+  </vee-form>
 </template>
 
 <script setup lang="ts">
@@ -56,6 +61,11 @@ const { login, errorMsg } = useAuth();
 const email: Ref<string> = ref('');
 const password: Ref<string> = ref('');
 
+// const schema = {
+//   email: 'required',
+//   password: 'required',
+// };
+
 const signIn = async () => {
   await login(email.value, password.value);
   if (getAuth().currentUser) {
@@ -63,3 +73,9 @@ const signIn = async () => {
   }
 };
 </script>
+
+<style scoped>
+.input {
+  @apply placeholder:text-gray-400 bg-transparent border text-gray-700 dark:text-gray-300 dark:border-gray-600 px-3 p-2 rounded-md outline-none focus:border-blue-600 dark:focus:border-blue-600;
+}
+</style>
