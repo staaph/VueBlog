@@ -1,30 +1,27 @@
 <template>
-  <main class="flex w-full h-full justify-center">
-    <div
-      v-if="isDashboardOpen"
-      class="fixed flex justify-center w-full h-full z-50"
-    >
-      <DashboardModal />
-    </div>
-    <div
-      v-if="isLoginModalOpen"
-      class="fixed flex justify-center w-full h-full z-50"
-    >
-      <LoginModal />
-    </div>
-    <section class="justify-center flex items-start mt-12 z-0">
-      <FeaturedSection />
-    </section>
-  </main>
+  <div class="h-screen w-screen justify-center items-center">
+    <Navbar />
+
+    <main class="flex w-full justify-center">
+      <section v-if="isDashboardOpen" class="fixed flex justify-center z-50">
+        <DashboardModal />
+      </section>
+      <section v-if="isLoginModalOpen" class="fixed flex justify-center z-50">
+        <LoginModal />
+      </section>
+      <section class="flex w-full justify-center mt-20 mx-16">
+        <FeaturedSection />
+      </section>
+    </main>
+  </div>
 </template>
 
 <script setup lang="ts">
+import Navbar from '@/components/NavbarComponent.vue';
 import DashboardModal from '@/views/DashboardModal.vue';
 import LoginModal from '@/views/LoginModal.vue';
-import FeaturedSection from '@/components/FeaturedSection.vue';
 import uiState from '@/composables/modalState';
-import TestSection from '@/components/TestSection.vue';
-import blogdata from '@/blogdata.json';
+import FeaturedSection from '@/components/FeaturedSection.vue';
 
 const { isDashboardOpen, isLoginModalOpen } = uiState;
 </script>

@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-white dark:bg-gray-900;
+    @apply bg-white dark:bg-gradient-to-r dark:from-gray-700 dark:via-gray-900 dark:to-black;
   }
   h1 {
     @apply text-2xl ;
