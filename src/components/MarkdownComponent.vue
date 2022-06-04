@@ -4,10 +4,10 @@
 
 <script setup lang="ts">
 import MarkdownIt from 'markdown-it';
+import type { ExtractPropTypes } from 'vue';
 import highlightjs from 'highlight.js';
 import markdownHighlight from 'markdown-it-highlightjs';
 import 'highlight.js/styles/github-dark-dimmed.css';
-import type { ExtractPropTypes } from 'vue';
 
 const props: Readonly<ExtractPropTypes<{ content: StringConstructor }>> =
   defineProps({

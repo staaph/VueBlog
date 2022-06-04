@@ -1,6 +1,6 @@
 import { ref, type Ref, onBeforeMount } from 'vue';
 
-const userTheme: Ref<string> = ref('dark');
+export const userTheme: Ref<string> = ref('dark');
 
 export const useDark = () => {
   const setTheme = (theme: string) => {
@@ -38,5 +38,5 @@ export const useDark = () => {
     setTheme(initUserTheme);
   });
 
-  return { toggleTheme, userTheme };
+  return { toggleTheme };
 };
