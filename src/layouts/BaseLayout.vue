@@ -1,27 +1,28 @@
 <template>
-  <main class="flex w-full h-full justify-center">
+  <main class="flex flex-col w-screen h-screen">
+    <Navbar class="w-screen" />
     <section v-if="isDashboardOpen" class="centered">
       <DashboardModal />
     </section>
     <section v-if="isLoginModalOpen" class="centered">
       <LoginModal />
     </section>
-    <section class="mt-20 mx-16">
-      <FeaturedSection />
-    </section>
+    <CloseWarning v-if="showWarning" class="centered" />
+    <router-view />
   </main>
 </template>
 
 <script setup lang="ts">
+import Navbar from '@/components/NavbarComponent.vue';
 import DashboardModal from '@/views/DashboardModal.vue';
 import LoginModal from '@/views/LoginModal.vue';
 import uiState from '@/composables/modalState';
-import FeaturedSection from '@/components/FeaturedSection.vue';
+import CloseWarning from '@/components/CloseWarning.vue';
 
-const { isDashboardOpen, isLoginModalOpen } = uiState;
+const { isDashboardOpen, isLoginModalOpen, showWarning } = uiState;
 </script>
 
-<style>
+<style scoped>
 .centered {
   @apply fixed flex justify-center items-center w-screen h-screen z-50;
 }

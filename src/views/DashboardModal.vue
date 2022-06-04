@@ -115,10 +115,6 @@
       </section>
     </section>
   </main>
-  <CloseWarning
-    v-if="showWarning"
-    class="w-screen h-screen grid place-content-center m-auto"
-  />
 </template>
 
 <script setup lang="ts">
@@ -130,10 +126,8 @@ import SettingsIcon from '@/assets/icons/SettingsIcon.vue';
 import uiState from '@/composables/modalState';
 import EditorComponent from '@/components/EditorComponent.vue';
 import { ref, type Ref } from 'vue';
-import CloseWarning from '../components/CloseWarning.vue';
 
-const { toggleDashboardModal, isUnsaved, setShowWarning, showWarning } =
-  uiState;
+const { toggleDashboardModal, isUnsaved, setShowWarning } = uiState;
 const menuItem: Ref<string> = ref('dashboard');
 
 const closeDashboard = () => {

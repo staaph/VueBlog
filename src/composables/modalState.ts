@@ -13,7 +13,7 @@ const showTosModal: Ref<boolean> = ref(false);
 
 /**
  * in case of unchanged changes, this should be toggled
- * @param flag on input change set to true
+ * @param flag - on input change set to true
  */
 const setUnsaved = (flag: boolean) => {
   state.isUnsaved = flag;
@@ -52,12 +52,12 @@ const uiState = {
   isUserMenuOpen,
   isUnsaved,
   showWarning,
+  showTosModal,
   setShowWarning,
   toggleDashboardModal,
   toggleLoginModal,
   toggleUserMenu,
-  setUnsaved,
-  showTosModal
+  setUnsaved
 };
 
 export default uiState;

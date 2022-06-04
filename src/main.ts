@@ -4,6 +4,7 @@ import router from '@/router';
 import '@/assets/index.css';
 import { auth } from '@/firebase/config';
 import VeeValidatePlugin from '@/plugin/validation.js'
+import { getAuth, onAuthStateChanged } from '@firebase/auth';
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -26,13 +27,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(faBold, faItalic, faList, faRotateLeft, faRotateRight, faCode, faListOl);
 
 
-let app;
 
-auth.onAuthStateChanged(() => {
-  app = createApp(App);
+
+
+  const app = createApp(App);
   app.use(router);
   app.use(VeeValidatePlugin)
   app.component('font-awesome-icon', FontAwesomeIcon);
 
   app.mount('#app');
-});
+
