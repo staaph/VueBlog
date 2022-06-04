@@ -29,15 +29,19 @@
         </button>
       </div>
     </section>
-    <section v-if="view === 'preview'" class="h-full">
-      <PreviewComponent :content="content" />
+    <section v-if="view === 'preview'" class="w-full h-full">
+      <div
+        class="h-full border border-black bg-white dark:bg-neutral-300 rounded p-3 break-all overflow-scroll"
+      >
+        <PreviewComponent :content="content" class="w-full h-full" />
+      </div>
     </section>
   </main>
 </template>
 
 <script setup lang="ts">
 import SendIcon from '@/assets/icons/SendIcon.vue';
-import PreviewComponent from '@/components/PreviewComponent.vue';
+import PreviewComponent from '@/components/MarkdownComponent.vue';
 import uiState from '@/composables/modalState';
 import { ref, type Ref, watch } from 'vue';
 import { content } from '@/composables/editorContent';
