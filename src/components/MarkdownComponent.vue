@@ -19,7 +19,6 @@ const md = new MarkdownIt();
 md.use(markdownHighlight, { hljs });
 
 const markupData = md.render(props.content);
-console.log(markupData);
 </script>
 
 <style scoped>
