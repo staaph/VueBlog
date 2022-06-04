@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('@/components/FeaturedSection.vue')
+      component: () => import('@/views/HomeView.vue')
     },
     {
       path: '/post',

@@ -1,28 +1,9 @@
 <template>
-  <main class="flex w-full h-full justify-center">
-    <section v-if="isDashboardOpen" class="centered">
-      <DashboardModal />
-    </section>
-    <section v-if="isLoginModalOpen" class="centered">
-      <LoginModal />
-    </section>
-    <section class="mt-20 mx-16">
-      <FeaturedSection />
-    </section>
-  </main>
+  <FeaturedSection />
 </template>
 
 <script setup lang="ts">
-import DashboardModal from '@/views/DashboardModal.vue';
-import LoginModal from '@/views/LoginModal.vue';
-import uiState from '@/composables/modalState';
 import FeaturedSection from '@/components/FeaturedSection.vue';
-
-const { isDashboardOpen, isLoginModalOpen } = uiState;
 </script>
 
-<style>
-.centered {
-  @apply fixed flex justify-center items-center w-screen h-screen z-50;
-}
-</style>
+<style></style>

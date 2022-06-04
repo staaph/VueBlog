@@ -12,13 +12,5 @@
 
 <script setup lang="ts">
 import MarkdownComponent from '@/components/MarkdownComponent.vue';
-import MarkdownIt from 'markdown-it';
-import 'highlight.js/styles/github-dark-dimmed.css';
-import highlightjs from 'highlight.js';
-import markdownHighlight from 'markdown-it-highlightjs';
 import { markdown } from '@/markdown';
-
-const hljs = highlightjs;
-const md = new MarkdownIt();
-md.use(markdownHighlight, { hljs });
 </script>

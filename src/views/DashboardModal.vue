@@ -1,6 +1,6 @@
 <template>
   <main
-    class="fixed border p-8 rounded h-5/6 w-3/4 bg-white dark:bg-neutral-900"
+    class="fixed border p-8 rounded h-[85%] w-[85%] bg-white dark:bg-neutral-900"
   >
     <CloseIcon
       class="absolute top-2 right-2 cursor-pointer dark:text-white text-gray-600"
@@ -19,7 +19,7 @@
           v-if="menuItem === 'writeArticle'"
           class="w-full ml-12 mt-4 overflow-scroll"
         >
-          <EditorComponent class="" />
+          <EditorComponent />
         </div>
         <div
           v-if="menuItem === 'profile'"

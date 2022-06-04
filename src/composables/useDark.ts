@@ -1,7 +1,8 @@
-import { ref, type Ref, onMounted } from 'vue';
+import { ref, type Ref, onBeforeMount } from 'vue';
+
+const userTheme: Ref<string> = ref('dark');
 
 export const useDark = () => {
-  const userTheme: Ref<string> = ref('dark');
   const setTheme = (theme: string) => {
     localStorage.setItem('theme', theme);
     userTheme.value = theme;
@@ -32,7 +33,7 @@ export const useDark = () => {
     }
   };
 
-  onMounted(() => {
+  onBeforeMount(() => {
     const initUserTheme = getTheme() || getMediaPreference();
     setTheme(initUserTheme);
   });
