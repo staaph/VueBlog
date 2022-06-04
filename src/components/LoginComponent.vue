@@ -3,6 +3,7 @@
     class="flex flex-col gap-y-5 justify-center items-center"
     @submit="signIn"
     v-slot="{ errors }"
+    :validation-schema="schema"
   >
     <!-- EMAIL -->
     <section class="flex flex-col gap-y-1 w-full">
@@ -61,10 +62,10 @@ const { login, errorMsg } = useAuth();
 const email: Ref<string> = ref('');
 const password: Ref<string> = ref('');
 
-// const schema = {
-//   email: 'required',
-//   password: 'required',
-// };
+const schema = {
+  email: 'required',
+  password: 'required',
+};
 
 const signIn = async () => {
   await login(email.value, password.value);

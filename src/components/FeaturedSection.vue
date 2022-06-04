@@ -1,5 +1,5 @@
 <template>
-  <main class="grid grid-cols-3 gap-10">
+  <main class="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
     <article v-for="(article, key) in articles" :key="key">
       <a :href="`/${key}`">
         <div class="flex flex-row gap-x-3">
@@ -7,7 +7,7 @@
             v-text="'0' + (key + 1)"
             class="font-bold text-3xl text-gray-400"
           />
-          <div class="flex flex-col text-sm">
+          <div class="flex flex-col text-sm dark:text-white">
             <span v-text="article.category" class="font-thin text-xs" />
             <span v-text="article.description" class="font-bold" />
             <div class="flex flex-row gap-x-2">

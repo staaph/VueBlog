@@ -8,7 +8,7 @@
       <LoginModal />
     </section>
     <CloseWarning v-if="showWarning" class="centered" />
-    <router-view />
+    <router-view class="px-10 md:px-32 py-16" />
   </main>
 </template>
 

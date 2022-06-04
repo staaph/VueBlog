@@ -1,9 +1,9 @@
 <template>
-  <main class="mx-32 mt-10">
+  <main class="dark:text-white">
     <div v-text="markdown.title" class="text-center text-3xl font-bold" />
     <section class="flex flex-row justify-center gap-x-1 text-sm">
       <div v-text="markdown.author" class="font-light" />
-      <p class="font-thin">in</p>
+      <div class="font-thin">in</div>
       <div v-text="markdown.category" class="font-light" />
     </section>
     <div v-html="markupData" />
