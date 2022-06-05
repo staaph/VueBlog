@@ -52,11 +52,11 @@
 
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import uiState from '@/composables/modalState';
+import uiState from '@/store/modalState';
 import { useAuth } from '@/composables/useAuth';
 import { getAuth } from '@firebase/auth';
 
-const { toggleLoginModal } = uiState;
+const { closeLoginModal } = uiState;
 const { login, errorMsg } = useAuth();
 
 const email: Ref<string> = ref('');
@@ -70,7 +70,7 @@ const schema = {
 const signIn = async () => {
   await login(email.value, password.value);
   if (getAuth().currentUser) {
-    toggleLoginModal();
+    closeLoginModal();
   }
 };
 </script>

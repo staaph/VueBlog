@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import SendIcon from '@/assets/icons/SendIcon.vue';
 import PreviewComponent from '@/components/MarkdownComponent.vue';
-import uiState from '@/composables/modalState';
+import uiState from '@/store/modalState';
 import { ref, type Ref, watch } from 'vue';
 import { content } from '@/store/dashboardStore';
 

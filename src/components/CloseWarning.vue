@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import uiState from '@/composables/modalState';
+import uiState from '@/store/modalState';
 import { content } from '@/store/dashboardStore';
 
 const { toggleDashboardModal, setUnsaved, setShowWarning } = uiState;

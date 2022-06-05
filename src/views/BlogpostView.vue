@@ -1,5 +1,5 @@
 <template>
-  <main class="dark:text-white">
+  <main class="dark:text-white px-10 md:px-32 py-16">
     <div v-text="markdown.title" class="text-center text-3xl font-bold" />
     <section class="flex flex-row justify-center gap-x-1 text-sm">
       <div v-text="markdown.author" class="font-light" />

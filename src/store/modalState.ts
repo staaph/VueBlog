@@ -18,31 +18,37 @@ const showTosModal: Ref<boolean> = ref(false);
 const setUnsaved = (flag: boolean) => {
   state.isUnsaved = flag;
 };
-const isUnsaved = computed(()=>state.isUnsaved)
+const isUnsaved = computed(() => state.isUnsaved);
 
-const showWarning = computed(()=>state.showWarning)
-const setShowWarning = () =>{
-  state.showWarning = !state.showWarning
-}
+const showWarning = computed(() => state.showWarning);
+const setShowWarning = () => {
+  state.showWarning = !state.showWarning;
+};
 
 const isDashboardOpen = computed(() => state.isDashboardOpen);
 const toggleDashboardModal = () => {
   if (!state.isUnsaved && getAuth().currentUser != null) {
-  state.isDashboardOpen = !state.isDashboardOpen;
-  state.isUserMenuOpen = false;
+    state.isDashboardOpen = !state.isDashboardOpen;
+    state.isUserMenuOpen = false;
   }
 };
 
 const isLoginModalOpen = computed(() => state.isLoginModalOpen);
-const toggleLoginModal = () => {
-  state.isLoginModalOpen = !state.isLoginModalOpen;
+const openLoginModal = () => {
+  if(getAuth().currentUser == null){
+    state.isLoginModalOpen = true
+    state.isUserMenuOpen = false
+  }
+}
+const closeLoginModal = () => {
+  state.isLoginModalOpen = false
   state.isUserMenuOpen = false;
 };
 
 const isUserMenuOpen = computed(() => state.isUserMenuOpen);
 const toggleUserMenu = () => {
-  if(!state.isDashboardOpen){
-  state.isUserMenuOpen = !state.isUserMenuOpen;
+  if (!state.isDashboardOpen) {
+    state.isUserMenuOpen = !state.isUserMenuOpen;
   }
 };
 
@@ -55,9 +61,10 @@ const uiState = {
   showTosModal,
   setShowWarning,
   toggleDashboardModal,
-  toggleLoginModal,
+  closeLoginModal,
+  openLoginModal,
   toggleUserMenu,
-  setUnsaved
+  setUnsaved,
 };
 
 export default uiState;

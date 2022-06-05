@@ -8,7 +8,7 @@
       <LoginModal />
     </section>
     <CloseWarning v-if="showWarning" class="centered" />
-    <router-view class="px-10 md:px-32 py-16" />
+    <router-view />
   </main>
 </template>
 
@@ -16,7 +16,7 @@
 import Navbar from '@/components/NavbarComponent.vue';
 import DashboardModal from '@/views/DashboardModal.vue';
 import LoginModal from '@/views/LoginModal.vue';
-import uiState from '@/composables/modalState';
+import uiState from '@/store/modalState';
 import CloseWarning from '@/components/CloseWarning.vue';
 
 const { isDashboardOpen, isLoginModalOpen, showWarning } = uiState;

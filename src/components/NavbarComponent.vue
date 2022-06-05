@@ -44,7 +44,7 @@
         tabindex="-1"
         id="user-menu-item-2"
         v-if="!getAuth().currentUser"
-        @click.prevent="toggleLoginModal"
+        @click.prevent="openLoginModal"
       >
         Sign In / Register
       </button>
@@ -67,14 +67,14 @@ import Sun from '@/assets/icons/lightSun.vue';
 import Moon from '@/assets/icons/darkMoon.vue';
 import User from '@/assets/icons/UserIcon.vue';
 import { useDark, userTheme } from '@/composables/useDark';
-import uiState from '@/composables/modalState';
+import uiState from '@/store/modalState';
 import { useAuth } from '@/composables/useAuth';
 import { getAuth } from 'firebase/auth';
 
 const { toggleTheme } = useDark();
 const { logout } = useAuth();
 const {
-  toggleLoginModal,
+  openLoginModal,
   toggleDashboardModal,
   isUserMenuOpen,
   toggleUserMenu,

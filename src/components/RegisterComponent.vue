@@ -110,9 +110,9 @@ import TosModal from '@/components/TosModal.vue';
 import { ref, type Ref } from 'vue';
 import { getAuth } from '@firebase/auth';
 import { useAuth } from '@/composables/useAuth';
-import uiState from '@/composables/modalState';
+import uiState from '@/store/modalState';
 
-const { toggleLoginModal, showTosModal } = uiState;
+const { closeLoginModal, showTosModal } = uiState;
 const { signup, errorMsg } = useAuth();
 
 const username: Ref<string> = ref('');
@@ -132,7 +132,7 @@ const register = async () => {
   if (password.value === confirm_password.value) {
     await signup(email.value, password.value);
     if (getAuth().currentUser) {
-      toggleLoginModal();
+      closeLoginModal();
     }
   } else {
     errorMsg.value = 'passwords do not match';

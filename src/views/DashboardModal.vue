@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import CloseIcon from '@/assets/icons/CloseIcon.vue';
-import uiState from '@/composables/modalState';
+import uiState from '@/store/modalState';
 import EditorComponent from '@/components/Dashboard/EditorComponent.vue';
 import DashboardMenu from '../components/Dashboard/DashboardMenu.vue';
 import { menuItem } from '@/store/dashboardStore';

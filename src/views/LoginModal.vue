@@ -4,7 +4,7 @@
   >
     <CloseIcon
       class="absolute top-3 right-3 cursor-pointer dark:text-white text-gray-600"
-      @click.prevent="toggleLoginModal"
+      @click="closeLoginModal"
     />
     <div class="flex flex-row h-full justify-center">
       <div class="flex flex-col w-full justify-center">
@@ -57,11 +57,11 @@
 <script setup lang="ts">
 import Login from '@/components/LoginComponent.vue';
 import Register from '@/components/RegisterComponent.vue';
-import uiState from '@/composables/modalState';
+import uiState from '@/store/modalState';
 import CloseIcon from '@/assets/icons/CloseIcon.vue';
 import { ref } from 'vue';
 
-const { toggleLoginModal } = uiState;
+const { closeLoginModal } = uiState;
 
 const showLogin = ref(true);
 </script>
