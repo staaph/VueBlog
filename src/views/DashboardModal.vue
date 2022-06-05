@@ -1,6 +1,6 @@
 <template>
   <main
-    class="fixed border p-8 rounded h-[85%] w-[85%] bg-white dark:bg-gray-700"
+    class="fixed border p-8 rounded h-[90%] w-[90%] bg-white dark:bg-gray-700"
   >
     <CloseIcon
       class="absolute top-2 right-2 cursor-pointer dark:text-white text-gray-600"
@@ -8,17 +8,14 @@
     />
     <section class="flex flex-row h-full">
       <DashboardMenu />
-      <section class="h-full w-full flex overflow-scroll">
+      <section class="w-full flex overflow-scroll">
         <div
           v-if="menuItem === 'dashboard'"
           class="flex items-center justify-center h-full w-full dark:text-white"
         >
           <p>Dashboard</p>
         </div>
-        <div
-          v-if="menuItem === 'writeArticle'"
-          class="w-full ml-12 mt-4 overflow-scroll"
-        >
+        <div v-if="menuItem === 'writeArticle'" class="w-full h-[92%] ml-12">
           <EditorComponent />
         </div>
         <div

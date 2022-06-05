@@ -1,11 +1,10 @@
 <template>
-  <main class="dark:text-white px-10 md:px-32 py-16">
-    <div v-text="markdown.title" class="text-center text-3xl font-bold" />
-    <section class="flex flex-row justify-center gap-x-1 text-sm">
+  <main class="dark:text-white px-10 md:px-32 pt-12 pb-16">
+    <div class="text-center mb-10">
+      <div v-text="markdown.title" class="text-3xl font-bold" />
       <div v-text="markdown.author" class="font-light" />
-      <div class="font-thin">in</div>
-      <div v-text="markdown.category" class="font-light" />
-    </section>
+    </div>
+    <section class="flex flex-row justify-center gap-x-1 text-sm"></section>
     <MarkdownComponent :content="markdown.content" />
   </main>
 </template>

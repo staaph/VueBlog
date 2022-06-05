@@ -1,13 +1,13 @@
 <template>
   <main class="flex flex-col w-screen h-screen">
     <Navbar class="w-screen" />
-    <section v-if="isDashboardOpen" class="centered">
+    <section v-if="isDashboardOpen" class="centered bg-gray-500/50">
       <DashboardModal />
     </section>
-    <section v-if="isLoginModalOpen" class="centered">
+    <section v-if="isLoginModalOpen" class="centered bg-gray-500/50">
       <LoginModal />
     </section>
-    <CloseWarning v-if="showWarning" class="centered" />
+    <CloseWarning v-if="showWarning" class="centered bg-gray-500/50" />
     <router-view />
   </main>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <main class="w-full h-[90%]">
+  <main class="w-full h-[92%]">
     <section class="w-full mb-2 items-center">
       <div class="flex flex-row gap-x-5 justify-center items-center">
         <button
@@ -16,14 +16,20 @@
         </button>
       </div>
     </section>
-    <section class="flex flex-col h-full pb-4" v-if="view === 'write'">
+    <input
+      type="text"
+      class="w-full mb-1 rounded h-10 dark:bg-gray-300"
+      placeholder="title"
+      v-model="title"
+    />
+    <section class="flex flex-col h-full" v-if="view === 'write'">
       <textarea
         v-model="content"
-        class="h-full border border-black rounded w-full resize-none outline-none p-3 dark:bg-neutral-300"
+        class="h-full border border-black rounded w-full resize-none outline-none dark:bg-gray-300"
       />
       <div class="flex justify-end pt-1.5">
         <button
-          class="flex py-1 items-center rounded bg-gray-200 dark:bg-gray-500 text-black dark:text-white px-2"
+          class="flex py-1 items-center rounded bg-gray-200 dark:bg-gray-300 text-black px-2"
         >
           <SendIcon class="h-5 w-5 mr-1" />Publish
         </button>
@@ -47,6 +53,7 @@ import { ref, type Ref, watch } from 'vue';
 import { content } from '@/store/dashboardStore';
 
 const { setUnsaved } = uiState;
+const title = ref<string>('');
 
 watch(content, () => {
   if (content.value.length > 0) {
