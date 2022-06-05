@@ -1,6 +1,6 @@
 <template>
   <main
-    class="fixed border py-2 rounded-md h-full md:h-5/6 w-full sm:w-2/3 lg:w-1/3 bg-white dark:bg-gray-900"
+    class="fixed border py-2 rounded-md h-full md:h-5/6 w-full sm:w-2/3 lg:w-1/3 bg-white dark:bg-gray-800"
   >
     <CloseIcon
       class="absolute top-3 right-3 cursor-pointer dark:text-white text-gray-600"

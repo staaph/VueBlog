@@ -23,7 +23,7 @@
       />
       <div class="flex justify-end pt-1.5">
         <button
-          class="flex py-1 items-center rounded bg-gray-200 dark:bg-gray-700 text-black dark:text-white px-2"
+          class="flex py-1 items-center rounded bg-gray-200 dark:bg-gray-500 text-black dark:text-white px-2"
         >
           <SendIcon class="h-5 w-5 mr-1" />Publish
         </button>

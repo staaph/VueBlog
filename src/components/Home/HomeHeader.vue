@@ -1,5 +1,7 @@
 <template>
-  <main class="bg-gray-100 h-1/2 flex flex-row justify-center px-12">
+  <main
+    class="bg-gray-100 h-1/4 sm:h-1/3 md:h-1/2 flex flex-row justify-center px-12"
+  >
     <div class="flex flex-row gap-x-12 items-center">
       <VueLogo class="h-40 w-40" />
       <section>

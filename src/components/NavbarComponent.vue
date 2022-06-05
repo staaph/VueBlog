@@ -2,20 +2,24 @@
   <main class="bg-transparent p-3">
     <nav class="px-3 bg-transparent flex flex-row justify-between items-center">
       <section
-        class="md:w-1/6 w-1/12 justify-start flex text-black dark:text-white text-xl font-bold"
+        class="md:w-1/6 w-1/12 justify-start flex text-black dark:text-white text-2xl font-bold"
       >
         <router-link to="/"> VueBlog </router-link>
       </section>
 
-      <section class="justify-end flex text-black dark:text-white gap-3">
+      <section class="justify-end flex text-black dark:text-white gap-4">
         <button>
-          <Sun @click="toggleTheme" v-if="userTheme === 'dark'" />
-          <Moon v-else @click="toggleTheme" />
+          <Sun
+            @click="toggleTheme"
+            v-if="userTheme === 'dark'"
+            class="w-7 h-7"
+          />
+          <Moon v-else @click="toggleTheme" class="w-7 h-7" />
         </button>
         <div
           class="border border-black dark:border-white rounded-full p-1 cursor-pointer"
         >
-          <User @click.prevent="toggleUserMenu" />
+          <User @click.prevent="toggleUserMenu" class="w-7 h-7" />
         </div>
       </section>
     </nav>
@@ -28,7 +32,7 @@
       tabindex="-1"
     >
       <button
-        v-show="getAuth().currentUser"
+        v-if="getAuth().currentUser"
         href="/"
         class="block px-4 py-2 text-sm text-gray-700"
         role="menuitem"
