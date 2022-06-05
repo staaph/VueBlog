@@ -66,12 +66,12 @@
 import Sun from '@/assets/icons/lightSun.vue';
 import Moon from '@/assets/icons/darkMoon.vue';
 import User from '@/assets/icons/UserIcon.vue';
-import { useDark } from '@/composables/useDark';
+import { useDark, userTheme } from '@/composables/useDark';
 import uiState from '@/composables/modalState';
 import { useAuth } from '@/composables/useAuth';
 import { getAuth } from 'firebase/auth';
 
-const { userTheme, toggleTheme } = useDark();
+const { toggleTheme } = useDark();
 const { logout } = useAuth();
 const {
   toggleLoginModal,

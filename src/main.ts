@@ -2,14 +2,10 @@ import { createApp } from 'vue';
 import App from '@/App.vue';
 import router from '@/router';
 import '@/assets/index.css';
-import { auth } from '@/firebase/config';
-import VeeValidatePlugin from '@/plugin/validation.js'
-import { getAuth, onAuthStateChanged } from '@firebase/auth';
-
-/* import the fontawesome core */
+import VeeValidatePlugin from '@/plugin/validation.js';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-/* import specific icons */
 import {
   faBold,
   faItalic,
@@ -17,23 +13,21 @@ import {
   faRotateLeft,
   faRotateRight,
   faCode,
-  faListOl
+  faListOl,
 } from '@fortawesome/free-solid-svg-icons';
 
-/* import font awesome icon component */
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+library.add(
+  faBold,
+  faItalic,
+  faList,
+  faRotateLeft,
+  faRotateRight,
+  faCode,
+  faListOl
+);
 
-/* add icons to the library */
-library.add(faBold, faItalic, faList, faRotateLeft, faRotateRight, faCode, faListOl);
-
-
-
-
-
-  const app = createApp(App);
-  app.use(router);
-  app.use(VeeValidatePlugin)
-  app.component('font-awesome-icon', FontAwesomeIcon);
-
-  app.mount('#app');
-
+const app = createApp(App);
+app.use(router);
+app.use(VeeValidatePlugin);
+app.component('font-awesome-icon', FontAwesomeIcon);
+app.mount('#app');

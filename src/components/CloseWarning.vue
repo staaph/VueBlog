@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import uiState from '@/composables/modalState';
-import { content } from '@/composables/editorContent';
+import { content } from '@/store/dashboardStore';
 
 const { toggleDashboardModal, setUnsaved, setShowWarning } = uiState;
 

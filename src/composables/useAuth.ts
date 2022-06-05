@@ -3,12 +3,12 @@ import {
     createUserWithEmailAndPassword,
     signInAnonymously,
     signOut,
-    getAuth,
     signInWithPopup,
     GoogleAuthProvider,
   } from 'firebase/auth';
   import { ref, type Ref } from 'vue';
   import { FirebaseError } from '@firebase/util';
+  import { auth } from '@/firebase/config';
   
   export const useAuth = () => {
     const errorMsg: Ref<string | unknown> = ref();
@@ -21,7 +21,7 @@ import {
     const login = async (email: string, password: string) => {
       errorMsg.value = '';
       try {
-        await signInWithEmailAndPassword(getAuth(), email, password);
+        await signInWithEmailAndPassword(auth, email, password);
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
           const errorMessageMap: { [key: string]: string } = {
@@ -44,7 +44,7 @@ import {
     const signup = async (email: string, password: string) => {
       errorMsg.value = '';
       try {
-        await createUserWithEmailAndPassword(getAuth(), email, password);
+        await createUserWithEmailAndPassword(auth, email, password);
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
           const errorMessageMap: { [key: string]: string } = {
@@ -63,7 +63,7 @@ import {
     const loginAnonymous = () => {
       errorMsg.value = '';
       try {
-        signInAnonymously(getAuth());
+        signInAnonymously(auth);
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
           errorMsg.value = 'Something unexpected happened';
@@ -79,7 +79,7 @@ import {
     const loginWithGoogle = async () => {
       errorMsg.value = '';
       try {
-        await signInWithPopup(getAuth(), new GoogleAuthProvider());
+        await signInWithPopup(auth, new GoogleAuthProvider());
       } catch (error) {
         errorMsg.value = 'Something unexpected happened';
       }
@@ -91,7 +91,7 @@ import {
     const logout = async () => {
       errorMsg.value = '';
       try {
-        await signOut(getAuth());
+        await signOut(auth);
       } catch (error: unknown) {
         if (error instanceof FirebaseError) {
           errorMsg.value = 'Something unexpected happened.';

@@ -2,7 +2,7 @@ import {
   Form as VeeForm,
   Field as VeeField,
   defineRule,
-  configure,
+  configure
 } from 'vee-validate';
 import { required, min, max, confirmed, email } from '@vee-validate/rules';
 import type { App } from 'vue';
