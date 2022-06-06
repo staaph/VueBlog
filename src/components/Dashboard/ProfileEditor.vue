@@ -1,33 +1,72 @@
 <template>
-  <main>
-    <section class="flex flex-col gap-y-2">
-      <label for="pw-change">Change Email</label>
-      <input type="text" class="rounded-md h-8" v-model="newEmail" />
-      <button class="bg-gray-200 rounded" @click="changeEmail">Change</button>
-    </section>
-    <section class="flex flex-col gap-y-2">
-      <label for="pw-change">Change Password</label>
-      <input type="password" v-model="newPassword" class="rounded-md h-8" />
-      <button @click="changePassword" class="bg-gray-200 rounded">
-        Change
-      </button>
-    </section>
+  <main
+    class="flex flex-col items-center h-full justify-center overflow-scroll"
+  >
+    <div class="w-1/2 flex flex-col gap-y-4">
+      <section class="flex flex-col">
+        <label>Provide your current password</label>
+        <input
+          type="text"
+          placeholder="old password"
+          class="input"
+          v-model="userProvidedPassword"
+        />
+      </section>
+      <section class="flex flex-col">
+        <label for="pw-change">Change Email</label>
+        <input type="text" class="input" v-model="newEmail" />
+        <div class="flex items-center justify-center">
+          <button @click="setNewEmail" class="button">Change Email</button>
+        </div>
+      </section>
+      <section class="flex flex-col justify-center">
+        <label for="pw-change">Change Password</label>
+        <input type="password" v-model="newPassword" class="input" />
+        <div class="flex items-center justify-center">
+          <button @click="setNewPw" class="button">Change Password</button>
+        </div>
+      </section>
+      <p v-text="errorMsg" class="text-center text-red-600" />
+    </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { getAuth, updatePassword, updateEmail } from 'firebase/auth';
 import { ref } from 'vue';
+import { useFbUtil } from '@/composables/useFbUtils';
 
-const user = getAuth().currentUser;
+const { changeEmail, changePassword, reauthenticate, errorMsg } = useFbUtil();
+
+const userProvidedPassword = ref<string>('');
+
 const newPassword = ref();
-const newEmail = ref();
+const newEmail = ref('');
 
-const changeEmail = async () => {
-  await updateEmail(user, newEmail.value);
+const setNewEmail = async () => {
+  if (userProvidedPassword.value.length !== 0) {
+    await reauthenticate(userProvidedPassword.value);
+    await changeEmail(newEmail.value);
+  } else {
+    errorMsg.value = 'please provide your current password';
+  }
 };
 
-const changePassword = async () => {
-  await updatePassword(user, newPassword.value);
+const setNewPw = async () => {
+  if (userProvidedPassword.value.length !== 0) {
+    await reauthenticate(userProvidedPassword.value);
+    await changePassword(newPassword.value);
+  } else {
+    errorMsg.value = 'please provide your current password';
+  }
 };
 </script>
+
+<style scoped>
+.input {
+  @apply placeholder:text-gray-400 bg-transparent border text-gray-700 dark:text-gray-300 dark:border-gray-600 px-3 p-2 rounded-md outline-none focus:border-blue-600 dark:focus:border-blue-600;
+}
+
+.button {
+  @apply bg-gray-700 rounded px-6 py-1 mt-1 text-white;
+}
+</style>

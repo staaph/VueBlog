@@ -10,7 +10,7 @@
         type="text"
         placeholder="Your Email"
         v-model="email"
-        class="input w-full"
+        class="input"
       />
       <p v-text="errorMsg" class="text-red-600 text-center" />
     </div>

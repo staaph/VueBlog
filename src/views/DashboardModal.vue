@@ -18,10 +18,7 @@
         <div v-if="menuItem === 'writeArticle'" class="w-full h-[92%] ml-12">
           <EditorComponent />
         </div>
-        <div
-          v-if="menuItem === 'profile'"
-          class="ml-12 h-full w-full dark:text-white"
-        >
+        <div v-if="menuItem === 'profile'" class="ml-12 w-full dark:text-white">
           <ProfileEditor />
         </div>
         <div
@@ -39,7 +36,7 @@
 import CloseIcon from '@/assets/icons/CloseIcon.vue';
 import uiState from '@/store/modalState';
 import EditorComponent from '@/components/Dashboard/EditorComponent.vue';
-import DashboardMenu from '../components/Dashboard/DashboardMenu.vue';
+import DashboardMenu from '@/components/Dashboard/DashboardMenu.vue';
 import ProfileEditor from '@/components/Dashboard/ProfileEditor.vue';
 import { menuItem } from '@/store/dashboardStore';
 
