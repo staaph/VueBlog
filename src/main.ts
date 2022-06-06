@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from '@/App.vue';
 import router from '@/router';
 import '@/assets/index.css';
-import VeeValidatePlugin from '@/plugin/validation.js';
+import VeeValidatePlugin from '@/plugins/validation.js';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 

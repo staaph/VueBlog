@@ -41,7 +41,6 @@ const { resetPwEmail, errorMsg } = useFbUtil();
 const email = ref();
 
 const sendEmail = async () => {
-  console.log('send');
   resetPwEmail(email.value);
 };
 </script>

@@ -6,7 +6,7 @@
       <section class="flex flex-col">
         <label>Provide your current password</label>
         <input
-          type="text"
+          type="password"
           placeholder="old password"
           class="input"
           v-model="userProvidedPassword"
@@ -16,14 +16,16 @@
         <label for="pw-change">Change Email</label>
         <input type="text" class="input" v-model="newEmail" />
         <div class="flex items-center justify-center">
-          <button @click="setNewEmail" class="button">Change Email</button>
+          <button @click="changeEmail" class="button">Change Email</button>
         </div>
       </section>
       <section class="flex flex-col justify-center">
         <label for="pw-change">Change Password</label>
         <input type="password" v-model="newPassword" class="input" />
         <div class="flex items-center justify-center">
-          <button @click="setNewPw" class="button">Change Password</button>
+          <button @click="changePassword" class="button">
+            Change Password
+          </button>
         </div>
       </section>
       <p v-text="errorMsg" class="text-center text-red-600" />
@@ -32,33 +34,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useFbUtil } from '@/composables/useFbUtils';
 
-const { changeEmail, changePassword, reauthenticate, errorMsg } = useFbUtil();
-
-const userProvidedPassword = ref<string>('');
-
-const newPassword = ref();
-const newEmail = ref('');
-
-const setNewEmail = async () => {
-  if (userProvidedPassword.value.length !== 0) {
-    await reauthenticate(userProvidedPassword.value);
-    await changeEmail(newEmail.value);
-  } else {
-    errorMsg.value = 'please provide your current password';
-  }
-};
-
-const setNewPw = async () => {
-  if (userProvidedPassword.value.length !== 0) {
-    await reauthenticate(userProvidedPassword.value);
-    await changePassword(newPassword.value);
-  } else {
-    errorMsg.value = 'please provide your current password';
-  }
-};
+const {
+  changeEmail,
+  changePassword,
+  errorMsg,
+  userProvidedPassword,
+  newPassword,
+  newEmail,
+} = useFbUtil();
 </script>
 
 <style scoped>
