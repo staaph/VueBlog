@@ -59,14 +59,17 @@ export const useFbUtil = () => {
           const errorMessageMap: { [key: string]: string } = {
             'auth/invalid-email': 'Please provide a valid email adress',
             'auth/wrong-password': 'provided password is invalid',
+            'auth/email-already-in-use': 'email is already in use',
           };
           errorMsg.value =
             errorMessageMap[error.code] ?? 'Something unexpected happened';
+        } else {
+          errorMsg.value = 'unknown server error';
         }
-        errorMsg.value = 'unknown server error';
       }
+    } else {
+      errorMsg.value = 'provide a password';
     }
-    errorMsg.value = 'provide a password';
   };
 
   const changePassword = async () => {
@@ -88,11 +91,13 @@ export const useFbUtil = () => {
           };
           errorMsg.value =
             errorMessageMap[error.code] ?? 'Something unexpected happened';
+        } else {
+          errorMsg.value = 'unknown server error';
         }
-        errorMsg.value = 'unknown server error';
       }
+    } else {
+      errorMsg.value = 'provide a password';
     }
-    errorMsg.value = 'provide a password';
   };
 
   return {
