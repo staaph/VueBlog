@@ -106,7 +106,7 @@
 </template>
 
 <script setup lang="ts">
-import TosModal from '@/components/TosModal.vue';
+import TosModal from '@/components/Login/TosModal.vue';
 import { ref, type Ref } from 'vue';
 import { getAuth } from '@firebase/auth';
 import { useAuth } from '@/composables/useAuth';

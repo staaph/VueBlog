@@ -12,7 +12,7 @@
           class="overflow-y-auto overflow-x-hidden flex flex-col items-center"
         >
           <!-- LOGIN -->
-          <section v-if="showLogin">
+          <section v-if="showLogin === 'login'">
             <h1
               class="flex items-center w-full justify-center font-medium text-lg mb-4 dark:text-white"
             >
@@ -24,15 +24,25 @@
             >
               No account yet?
               <span
-                @click="showLogin = false"
+                @click="setLogin('register')"
                 class="cursor-pointer text-blue-600"
                 >&nbsp;Sign up&nbsp;</span
               >instead
             </p>
           </section>
 
+          <!-- Forgot Password -->
+          <section v-if="showLogin == 'forgotPw'">
+            <h1
+              class="flex items-center w-full justify-center font-medium text-lg mb-4 dark:text-white"
+            >
+              Forgot Password
+            </h1>
+            <ForgotPw />
+          </section>
+
           <!-- REGISTER -->
-          <section v-else>
+          <section v-if="showLogin == 'register'">
             <h1
               class="flex items-center w-full justify-center font-medium text-lg mb-4 dark:text-gray-300"
             >
@@ -42,7 +52,7 @@
             <p class="flex justify-center mt-3 text-sm dark:text-white">
               Already registered?
               <span
-                @click="showLogin = true"
+                @click="setLogin('login')"
                 class="cursor-pointer text-blue-600"
                 >&nbsp;Login&nbsp;</span
               >instead
@@ -55,13 +65,12 @@
 </template>
 
 <script setup lang="ts">
-import Login from '@/components/LoginComponent.vue';
-import Register from '@/components/RegisterComponent.vue';
+import Login from '@/components/Login/LoginComponent.vue';
+import Register from '@/components/Login/RegisterComponent.vue';
 import uiState from '@/store/modalState';
 import CloseIcon from '@/assets/icons/CloseIcon.vue';
-import { ref } from 'vue';
+import ForgotPw from '@/components/Login/ForgotPw.vue';
+import { showLogin, setLogin } from '@/store/loginStore';
 
 const { closeLoginModal } = uiState;
-
-const showLogin = ref(true);
 </script>

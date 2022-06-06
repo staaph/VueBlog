@@ -32,6 +32,7 @@
         >
         <span
           class="flex justify-end w-full cursor-pointer text-xs text-gray-500 dark:text-gray-300 hover:underline"
+          @click="setLogin('forgotPw')"
           >Forgot password?</span
         >
       </div>
@@ -55,6 +56,7 @@ import { ref, type Ref } from 'vue';
 import uiState from '@/store/modalState';
 import { useAuth } from '@/composables/useAuth';
 import { getAuth } from '@firebase/auth';
+import { setLogin } from '@/store/loginStore';
 
 const { closeLoginModal } = uiState;
 const { login, errorMsg } = useAuth();
