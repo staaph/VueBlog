@@ -33,11 +33,6 @@
 
           <!-- Forgot Password -->
           <section v-if="showLogin == 'forgotPw'">
-            <h1
-              class="flex items-center w-full justify-center font-medium text-lg mb-4 dark:text-white"
-            >
-              Forgot Password
-            </h1>
             <ForgotPw />
           </section>
 

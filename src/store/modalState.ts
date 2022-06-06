@@ -1,5 +1,6 @@
 import { reactive, computed, ref, type Ref } from 'vue';
 import { getAuth } from 'firebase/auth';
+import { setLogin } from '@/store/loginStore';
 
 const state = reactive({
   isDashboardOpen: false,
@@ -43,6 +44,7 @@ const openLoginModal = () => {
 const closeLoginModal = () => {
   state.isLoginModalOpen = false
   state.isUserMenuOpen = false;
+  setLogin('login')
 };
 
 const isUserMenuOpen = computed(() => state.isUserMenuOpen);
