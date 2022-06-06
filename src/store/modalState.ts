@@ -27,9 +27,13 @@ const setShowWarning = () => {
 };
 
 const isDashboardOpen = computed(() => state.isDashboardOpen);
-const toggleDashboardModal = () => {
-  if (!state.isUnsaved && getAuth().currentUser != null) {
-    state.isDashboardOpen = !state.isDashboardOpen;
+const toggleDashboardModal = (flag: boolean) => {
+  if (flag == true && !state.isUnsaved && getAuth().currentUser != null) {
+    state.isDashboardOpen = true;
+    state.isUserMenuOpen = false;
+  }
+  else if(flag == false){
+    state.isDashboardOpen = false;
     state.isUserMenuOpen = false;
   }
 };

@@ -101,7 +101,12 @@
     </section>
     <TosModal />
     <div v-if="errorMsg" class="text-red-900">{{ errorMsg }}</div>
-    <button class="bg-gray-700 rounded px-6 py-1.5 text-white">Signup</button>
+    <button
+      class="bg-gray-700 rounded px-6 py-1.5 text-white"
+      @click="register"
+    >
+      Signup
+    </button>
   </vee-form>
 </template>
 

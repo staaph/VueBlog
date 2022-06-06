@@ -23,9 +23,9 @@
         </div>
         <div
           v-if="menuItem === 'settings'"
-          class="flex items-center justify-center h-full w-full dark:text-white"
+          class="ml-12 w-full dark:text-white"
         >
-          <p>settings</p>
+          <SettingsEditor />
         </div>
       </section>
     </section>
@@ -38,6 +38,7 @@ import uiState from '@/store/modalState';
 import EditorComponent from '@/components/Dashboard/EditorComponent.vue';
 import DashboardMenu from '@/components/Dashboard/DashboardMenu.vue';
 import ProfileEditor from '@/components/Dashboard/ProfileEditor.vue';
+import SettingsEditor from '@/components/Dashboard/SettingsEditor.vue';
 import { menuItem } from '@/store/dashboardStore';
 
 const { toggleDashboardModal, isUnsaved, setShowWarning } = uiState;
@@ -46,7 +47,7 @@ const closeDashboard = () => {
   if (isUnsaved.value) {
     setShowWarning();
   } else {
-    toggleDashboardModal();
+    toggleDashboardModal(false);
   }
 };
 </script>

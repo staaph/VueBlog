@@ -6,8 +6,11 @@ import {
   updateEmail,
   EmailAuthProvider,
   reauthenticateWithCredential,
+  deleteUser
 } from 'firebase/auth';
 import { FirebaseError } from '@firebase/util';
+import uiState from '@/store/modalState';
+const {toggleDashboardModal} = uiState
 
 export const useFbUtil = () => {
   const errorMsg = ref<string>('');
@@ -100,11 +103,20 @@ export const useFbUtil = () => {
     }
   };
 
+  const deleteAccount = async (currentPw:string) => {
+    if (user) {
+      await reauthenticate(currentPw);
+      await deleteUser(user);
+      toggleDashboardModal(false)
+    }
+  };
+
   return {
     resetPwEmail,
     changeEmail,
     changePassword,
     reauthenticate,
+    deleteAccount,
     userProvidedPassword,
     errorMsg,
     newPassword,

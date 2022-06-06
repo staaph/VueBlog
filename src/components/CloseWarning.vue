@@ -38,7 +38,7 @@ const no = () => {
 const yes = () => {
   setUnsaved(false);
   setShowWarning();
-  toggleDashboardModal();
+  toggleDashboardModal(false);
   content.value = '';
 };
 </script>

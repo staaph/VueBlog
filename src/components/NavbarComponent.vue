@@ -38,7 +38,7 @@
         role="menuitem"
         tabindex="-1"
         id="user-menu-item-1"
-        @click.prevent="toggleDashboardModal"
+        @click="toggleDashboardModal(true)"
       >
         Dashboard
       </button>
@@ -91,7 +91,7 @@ const signOut = async () => {
     toggleUserMenu();
   }
   if (isDashboardOpen.value) {
-    toggleDashboardModal();
+    toggleDashboardModal(false);
   }
 };
 </script>
