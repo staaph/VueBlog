@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import SendIcon from '@/assets/icons/SendIcon.vue';
 import PreviewComponent from '@/components/MarkdownComponent.vue';
-import { ref, type Ref, watch } from 'vue';
+import { ref, type Ref } from 'vue';
 import { content } from '@/store/dashboardStore';
 import { setDocument } from '@/composables/useFirestore';
 

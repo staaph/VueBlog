@@ -13,7 +13,7 @@
       id="user-menu-item-1"
       @click="toggleDashboardModal(true)"
     >
-      Dashboard
+      <span class="flex flex-row gap-x-1"><DashboardIcon /> Dashboard</span>
     </button>
     <button
       v-if="user"
@@ -23,7 +23,9 @@
       id="user-menu-item-2"
       @click="setUserMenu(false)"
     >
-      <router-link to="/write">Write Article</router-link>
+      <router-link to="/write" class="flex flex-row gap-x-1"
+        ><ArticleIcon />Write</router-link
+      >
     </button>
     <button
       class="block px-4 py-2 text-sm text-gray-700"
@@ -53,6 +55,8 @@ import uiState from '@/store/modalState';
 import { useAuth } from '@/composables/useAuth';
 import { getAuth } from 'firebase/auth';
 import { user } from '@/composables/useAuth';
+import ArticleIcon from '@/assets/icons/ArticleIcon.vue';
+import DashboardIcon from '@/assets/icons/DashboardIcon.vue';
 
 const { logout } = useAuth();
 const { openLoginModal, toggleDashboardModal, setUserMenu, isDashboardOpen } =
