@@ -6,11 +6,12 @@ import {
   updateEmail,
   EmailAuthProvider,
   reauthenticateWithCredential,
-  deleteUser
+  deleteUser,
 } from 'firebase/auth';
 import { FirebaseError } from '@firebase/util';
 import uiState from '@/store/modalState';
-const {toggleDashboardModal} = uiState
+const { toggleDashboardModal } = uiState;
+import { errorMessage } from '@/composables/errorMsg';
 
 export const useFbUtil = () => {
   const errorMsg = ref<string>('');
@@ -23,17 +24,8 @@ export const useFbUtil = () => {
     try {
       await sendPasswordResetEmail(getAuth(), email);
     } catch (error: unknown) {
-      if (error instanceof FirebaseError) {
-        const errorMessageMap: { [key: string]: string } = {
-          'auth/user-not-found': 'No user with the provided email found',
-          'auth/missing-email': 'Please provide an email adress',
-          'auth/invalid-email': 'Please provide a valid email',
-        };
-        errorMsg.value =
-          errorMessageMap[error.code] ?? 'Something unexpected happened';
-      } else {
-        errorMsg.value = 'unknown server error';
-      }
+      error instanceof FirebaseError ? errorMsg.value =
+      errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
     }
   };
 
@@ -56,17 +48,8 @@ export const useFbUtil = () => {
         await updateEmail(user, newEmail);
         userProvidedPassword.value = '';
       } catch (error) {
-        if (error instanceof FirebaseError) {
-          const errorMessageMap: { [key: string]: string } = {
-            'auth/invalid-email': 'Please provide a valid email adress',
-            'auth/wrong-password': 'provided password is invalid',
-            'auth/email-already-in-use': 'email is already in use',
-          };
-          errorMsg.value =
-            errorMessageMap[error.code] ?? 'Something unexpected happened';
-        } else {
-          errorMsg.value = 'unknown server error';
-        }
+        error instanceof FirebaseError ? errorMsg.value =
+        errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
       }
     } else {
       errorMsg.value = 'provide a password';
@@ -85,27 +68,19 @@ export const useFbUtil = () => {
         }
         errorMsg.value = 'provide a new password';
       } catch (error: unknown) {
-        if (error instanceof FirebaseError) {
-          const errorMessageMap: { [key: string]: string } = {
-            'auth/weak-password': 'Password should be at least 6 characters',
-            'auth/wrong-password': 'provided password is invalid',
-          };
-          errorMsg.value =
-            errorMessageMap[error.code] ?? 'Something unexpected happened';
-        } else {
-          errorMsg.value = 'unknown server error';
-        }
+        error instanceof FirebaseError ? errorMsg.value =
+        errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
       }
     } else {
       errorMsg.value = 'provide a password';
     }
   };
 
-  const deleteAccount = async (currentPw:string) => {
+  const deleteAccount = async (currentPw: string) => {
     if (user) {
       await reauthenticate(currentPw);
       await deleteUser(user);
-      toggleDashboardModal(false)
+      toggleDashboardModal(false);
     }
   };
 
