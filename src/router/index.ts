@@ -14,6 +14,11 @@ const router = createRouter({
       component: () => import('@/views/BlogpostView.vue')
     },
     {
+      path: '/write',
+      name: 'write',
+      component: () => import('@/views/WriteArticle.vue')
+    },
+    {
       path: '/:catchAll(.*)*',
       name: 'error',
       component: () => import('@/views/ErrorView.vue')

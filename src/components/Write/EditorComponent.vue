@@ -1,6 +1,6 @@
 <template>
-  <main class="w-full h-[92%]">
-    <section class="w-full mb-2 items-center">
+  <main class="h-full">
+    <section class="mb-2 items-center">
       <div class="flex flex-row gap-x-5 justify-center items-center">
         <button
           class="bg-gray-200 rounded px-3 p-0.5"
@@ -16,13 +16,13 @@
         </button>
       </div>
     </section>
-    <input
-      type="text"
-      class="w-full mb-1 rounded h-10 dark:bg-gray-300"
-      placeholder="title"
-      v-model="title"
-    />
-    <section class="flex flex-col h-full" v-if="view === 'write'">
+    <section class="flex flex-col h-full" v-if="view == 'write'">
+      <input
+        type="text"
+        class="w-full mb-1 rounded h-10 dark:bg-gray-300"
+        placeholder="title"
+        v-model="title"
+      />
       <textarea
         v-model="content"
         class="h-full border border-black rounded w-full resize-none outline-none dark:bg-gray-300"
@@ -36,12 +36,11 @@
         </button>
       </div>
     </section>
-    <section v-if="view === 'preview'" class="w-full h-full">
-      <div
-        class="h-full border border-black bg-white dark:bg-neutral-300 rounded p-3 break-all overflow-scroll"
-      >
-        <PreviewComponent :content="content" class="w-full h-full" />
-      </div>
+    <section class="flex flex-col h-full" v-if="view == 'preview'">
+      <PreviewComponent
+        class="h-full px-2 border border-black overflow-scroll rounded w-full resize-none outline-none dark:bg-gray-300"
+        :content="content"
+      />
     </section>
   </main>
 </template>
@@ -72,5 +71,6 @@ watch(content, () => {
 const view: Ref<string> = ref('write');
 const setView = (value: string) => {
   view.value = value;
+  console.log(view.value);
 };
 </script>

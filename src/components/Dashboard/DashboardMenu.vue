@@ -25,20 +25,6 @@
             <span class="ml-2 text-sm tracking-wide truncate">Dashboard</span>
           </button>
         </li>
-        <li>
-          <button
-            class="relative flex flex-row items-center h-8 dark:text-white"
-            :class="{ 'font-bold': menuItem === 'writeArticle' }"
-            @click.prevent="menuItem = 'writeArticle'"
-          >
-            <span class="inline-flex justify-center items-center">
-              <ArticleIcon />
-            </span>
-            <span class="ml-2 text-sm tracking-wide truncate"
-              >Write Article</span
-            >
-          </button>
-        </li>
         <li class="hidden md:block">
           <div class="flex flex-row items-center mt-5 h-8">
             <div
@@ -80,7 +66,6 @@
 <script setup lang="ts">
 import { menuItem } from '@/store/dashboardStore';
 import HomeIcon from '@/assets/icons/HomeIcon.vue';
-import ArticleIcon from '@/assets/icons/ArticleIcon.vue';
 import ProfileIcon from '@/assets/icons/ProfileIcon.vue';
 import SettingsIcon from '@/assets/icons/SettingsIcon.vue';
 </script>

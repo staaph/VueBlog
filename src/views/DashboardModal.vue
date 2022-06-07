@@ -4,7 +4,7 @@
   >
     <CloseIcon
       class="absolute top-2 right-2 cursor-pointer dark:text-white text-gray-600"
-      @click.prevent="closeDashboard"
+      @click.prevent="toggleDashboardModal(false)"
     />
     <section class="flex flex-row h-full">
       <DashboardMenu />
@@ -14,9 +14,6 @@
           class="flex items-center justify-center h-full w-full dark:text-white"
         >
           <p>Dashboard</p>
-        </div>
-        <div v-if="menuItem === 'writeArticle'" class="w-full h-[92%] ml-12">
-          <EditorComponent />
         </div>
         <div v-if="menuItem === 'profile'" class="ml-12 w-full dark:text-white">
           <ProfileEditor />
@@ -35,19 +32,10 @@
 <script setup lang="ts">
 import CloseIcon from '@/assets/icons/CloseIcon.vue';
 import uiState from '@/store/modalState';
-import EditorComponent from '@/components/Dashboard/EditorComponent.vue';
 import DashboardMenu from '@/components/Dashboard/DashboardMenu.vue';
 import ProfileEditor from '@/components/Dashboard/ProfileEditor.vue';
 import SettingsEditor from '@/components/Dashboard/SettingsEditor.vue';
 import { menuItem } from '@/store/dashboardStore';
 
-const { toggleDashboardModal, isUnsaved, setShowWarning } = uiState;
-
-const closeDashboard = () => {
-  if (isUnsaved.value) {
-    setShowWarning(true);
-  } else {
-    toggleDashboardModal(false);
-  }
-};
+const { toggleDashboardModal } = uiState;
 </script>

@@ -7,7 +7,6 @@
   >
     <button
       v-if="user"
-      href="/"
       class="block px-4 py-2 text-sm text-gray-700"
       role="menuitem"
       tabindex="-1"
@@ -17,10 +16,19 @@
       Dashboard
     </button>
     <button
+      v-if="user"
       class="block px-4 py-2 text-sm text-gray-700"
       role="menuitem"
       tabindex="-1"
       id="user-menu-item-2"
+    >
+      <router-link to="/write">Write Article</router-link>
+    </button>
+    <button
+      class="block px-4 py-2 text-sm text-gray-700"
+      role="menuitem"
+      tabindex="-1"
+      id="user-menu-item-3"
       v-if="!user"
       @click.prevent="openLoginModal"
     >
