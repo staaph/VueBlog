@@ -52,6 +52,7 @@ import uiState from '@/store/modalState';
 import { ref, type Ref, watch } from 'vue';
 import { content } from '@/store/dashboardStore';
 import { setDocument } from '@/composables/useFirestore';
+import { stopPageLeave } from '@/composables/stopPageLeave';
 
 const { setUnsaved } = uiState;
 const title = ref<string>('');
@@ -63,8 +64,10 @@ const publish = () => {
 watch(content, () => {
   if (content.value.length > 0) {
     setUnsaved(true);
+    stopPageLeave(true);
   } else {
     setUnsaved(false);
+    stopPageLeave(false);
   }
 });
 
