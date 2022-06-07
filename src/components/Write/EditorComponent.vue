@@ -48,28 +48,15 @@
 <script setup lang="ts">
 import SendIcon from '@/assets/icons/SendIcon.vue';
 import PreviewComponent from '@/components/MarkdownComponent.vue';
-import uiState from '@/store/modalState';
 import { ref, type Ref, watch } from 'vue';
 import { content } from '@/store/dashboardStore';
 import { setDocument } from '@/composables/useFirestore';
-import { stopPageLeave } from '@/composables/stopPageLeave';
 
-const { setUnsaved } = uiState;
 const title = ref<string>('');
 
 const publish = () => {
   setDocument('content', 'doc1', { text: content.value });
 };
-
-watch(content, () => {
-  if (content.value.length > 0) {
-    setUnsaved(true);
-    stopPageLeave(true);
-  } else {
-    setUnsaved(false);
-    stopPageLeave(false);
-  }
-});
 
 const view: Ref<string> = ref('write');
 const setView = (value: string) => {

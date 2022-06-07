@@ -6,25 +6,13 @@ const state = reactive({
   isDashboardOpen: false,
   isUserMenuOpen: false,
   isLoginModalOpen: false,
-  isUnsaved: false,
-  showWarning: false,
 });
 
 const showTosModal: Ref<boolean> = ref(false);
 
-const setUnsaved = (flag: boolean) => {
-  state.isUnsaved = flag;
-};
-const isUnsaved = computed(() => state.isUnsaved);
-
-const showWarning = computed(() => state.showWarning);
-const setShowWarning = (flag: boolean) => {
-  state.showWarning = flag;
-};
-
 const isDashboardOpen = computed(() => state.isDashboardOpen);
 const toggleDashboardModal = (flag: boolean) => {
-  if (flag == true && !state.isUnsaved && getAuth().currentUser != null) {
+  if (flag == true && getAuth().currentUser != null) {
     state.isDashboardOpen = true;
     state.isUserMenuOpen = false;
   }
@@ -59,15 +47,11 @@ const uiState = {
   isDashboardOpen,
   isLoginModalOpen,
   isUserMenuOpen,
-  isUnsaved,
-  showWarning,
   showTosModal,
-  setShowWarning,
   toggleDashboardModal,
   openLoginModal,
   closeLoginModal,
   setUserMenu,
-  setUnsaved,
 };
 
 export default uiState;

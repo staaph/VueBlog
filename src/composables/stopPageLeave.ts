@@ -5,7 +5,7 @@ export const stopPageLeave = (flag: boolean) => {
   if (flag) {
     onBeforeRouteLeave((to, from, next) => {
       const prompt = window.confirm(
-        'Do you really want to leave? You have unsaved changes!'
+        'Do you really want to leave? You may have unsaved changes!'
       );
       if (!prompt) {
         next(false);
