@@ -19,7 +19,7 @@
         <div
           class="border border-black dark:border-white rounded-full p-1 cursor-pointer"
         >
-          <User @click.prevent="setUserMenu(true)" class="w-7 h-7" />
+          <User @click="openCloseDb" class="w-7 h-7" />
         </div>
       </section>
     </nav>
@@ -84,6 +84,10 @@ const {
   setUserMenu,
   isDashboardOpen,
 } = uiState;
+
+const openCloseDb = () => {
+  !isUserMenuOpen.value ? setUserMenu(true) : setUserMenu(false);
+};
 
 const signOut = async () => {
   await logout();
