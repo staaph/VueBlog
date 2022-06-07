@@ -12,7 +12,7 @@ import { FirebaseError } from '@firebase/util';
 import { auth } from '@/firebase/config';
 import { errorMessage } from '@/composables/errorMsg';
 
-const user: Ref<object | null> = ref(auth.currentUser);
+export const user: Ref<object | null> = ref(auth.currentUser);
 
 export const useAuth = () => {
   const errorMsg: Ref<string | unknown> = ref();
@@ -102,7 +102,6 @@ export const useAuth = () => {
     loginAnonymous,
     loginWithGoogle,
     logout,
-    user,
     errorMsg,
   };
 };

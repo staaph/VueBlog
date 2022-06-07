@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import Navbar from '@/components/NavbarComponent.vue';
+import Navbar from '@/components/Navbar/NavbarComponent.vue';
 import DashboardModal from '@/views/DashboardModal.vue';
 import LoginModal from '@/views/LoginModal.vue';
 import uiState from '@/store/modalState';

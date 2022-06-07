@@ -26,42 +26,8 @@
     <div
       v-show="isUserMenuOpen"
       class="origin-top-right absolute right-4 mt-2 w-36 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-      role="menu"
-      aria-orientation="vertical"
-      aria-labelledby="user-menu-button"
-      tabindex="-1"
     >
-      <button
-        v-if="getAuth().currentUser"
-        href="/"
-        class="block px-4 py-2 text-sm text-gray-700"
-        role="menuitem"
-        tabindex="-1"
-        id="user-menu-item-1"
-        @click="toggleDashboardModal(true)"
-      >
-        Dashboard
-      </button>
-      <button
-        class="block px-4 py-2 text-sm text-gray-700"
-        role="menuitem"
-        tabindex="-1"
-        id="user-menu-item-2"
-        v-if="!getAuth().currentUser"
-        @click.prevent="openLoginModal"
-      >
-        Sign In / Register
-      </button>
-      <button
-        v-else
-        class="block px-4 py-2 text-xs text-blue-700"
-        role="menuitem"
-        tabindex="-1"
-        id="user-menu-item-3"
-        @click="signOut"
-      >
-        Sign out
-      </button>
+      <UserMenu />
     </div>
   </main>
 </template>
@@ -72,30 +38,12 @@ import Moon from '@/assets/icons/darkMoon.vue';
 import User from '@/assets/icons/UserIcon.vue';
 import { useDark, userTheme } from '@/composables/useDark';
 import uiState from '@/store/modalState';
-import { useAuth } from '@/composables/useAuth';
-import { getAuth } from 'firebase/auth';
+import UserMenu from '@/components/Navbar/UserMenu.vue';
 
 const { toggleTheme } = useDark();
-const { logout } = useAuth();
-const {
-  openLoginModal,
-  toggleDashboardModal,
-  isUserMenuOpen,
-  setUserMenu,
-  isDashboardOpen,
-} = uiState;
+const { isUserMenuOpen, setUserMenu } = uiState;
 
 const openCloseDb = () => {
   !isUserMenuOpen.value ? setUserMenu(true) : setUserMenu(false);
-};
-
-const signOut = async () => {
-  await logout();
-  if (getAuth().currentUser === null) {
-    setUserMenu(false);
-  }
-  if (isDashboardOpen.value) {
-    toggleDashboardModal(false);
-  }
 };
 </script>

@@ -30,6 +30,7 @@
       <div class="flex justify-end pt-1.5">
         <button
           class="flex py-1 items-center rounded bg-gray-200 dark:bg-gray-300 text-black px-2"
+          @click="publish"
         >
           <SendIcon class="h-5 w-5 mr-1" />Publish
         </button>
@@ -51,9 +52,14 @@ import PreviewComponent from '@/components/MarkdownComponent.vue';
 import uiState from '@/store/modalState';
 import { ref, type Ref, watch } from 'vue';
 import { content } from '@/store/dashboardStore';
+import { setDocument } from '@/composables/useFirestore';
 
 const { setUnsaved } = uiState;
 const title = ref<string>('');
+
+const publish = () => {
+  setDocument('content', 'doc1', { text: content.value });
+};
 
 watch(content, () => {
   if (content.value.length > 0) {
