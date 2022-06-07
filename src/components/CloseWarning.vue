@@ -32,12 +32,12 @@ import { content } from '@/store/dashboardStore';
 const { toggleDashboardModal, setUnsaved, setShowWarning } = uiState;
 
 const no = () => {
-  setShowWarning();
+  setShowWarning(false);
 };
 
 const yes = () => {
   setUnsaved(false);
-  setShowWarning();
+  setShowWarning(false);
   toggleDashboardModal(false);
   content.value = '';
 };

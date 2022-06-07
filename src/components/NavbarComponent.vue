@@ -19,7 +19,7 @@
         <div
           class="border border-black dark:border-white rounded-full p-1 cursor-pointer"
         >
-          <User @click.prevent="toggleUserMenu" class="w-7 h-7" />
+          <User @click.prevent="setUserMenu(true)" class="w-7 h-7" />
         </div>
       </section>
     </nav>
@@ -81,14 +81,14 @@ const {
   openLoginModal,
   toggleDashboardModal,
   isUserMenuOpen,
-  toggleUserMenu,
+  setUserMenu,
   isDashboardOpen,
 } = uiState;
 
 const signOut = async () => {
   await logout();
   if (getAuth().currentUser === null) {
-    toggleUserMenu();
+    setUserMenu(false);
   }
   if (isDashboardOpen.value) {
     toggleDashboardModal(false);

@@ -17,7 +17,6 @@ export const useFbUtil = () => {
   const user = getAuth().currentUser;
   const userProvidedPassword = ref<string>('');
   const newPassword = ref<string>('');
-  const newEmail = ref<string>(getAuth().currentUser!.email!);
 
   const resetPwEmail = async (email: string) => {
     errorMsg.value = '';
@@ -49,14 +48,13 @@ export const useFbUtil = () => {
     }
   };
 
-  const changeEmail = async () => {
+  const changeEmail = async (newEmail: string) => {
     errorMsg.value = '';
     if (user && userProvidedPassword.value.length !== 0) {
       try {
         await reauthenticate(userProvidedPassword.value);
-        await updateEmail(user, newEmail.value);
+        await updateEmail(user, newEmail);
         userProvidedPassword.value = '';
-        newEmail.value = getAuth().currentUser!.email!;
       } catch (error) {
         if (error instanceof FirebaseError) {
           const errorMessageMap: { [key: string]: string } = {
@@ -120,6 +118,5 @@ export const useFbUtil = () => {
     userProvidedPassword,
     errorMsg,
     newPassword,
-    newEmail,
   };
 };

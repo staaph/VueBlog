@@ -12,18 +12,14 @@ const state = reactive({
 
 const showTosModal: Ref<boolean> = ref(false);
 
-/**
- * in case of unchanged changes, this should be toggled
- * @param flag - on input change set to true
- */
 const setUnsaved = (flag: boolean) => {
   state.isUnsaved = flag;
 };
 const isUnsaved = computed(() => state.isUnsaved);
 
 const showWarning = computed(() => state.showWarning);
-const setShowWarning = () => {
-  state.showWarning = !state.showWarning;
+const setShowWarning = (flag: boolean) => {
+  state.showWarning = flag;
 };
 
 const isDashboardOpen = computed(() => state.isDashboardOpen);
@@ -44,6 +40,7 @@ const openLoginModal = () => {
     state.isLoginModalOpen = true
     state.isUserMenuOpen = false
   }
+
 }
 const closeLoginModal = () => {
   state.isLoginModalOpen = false
@@ -52,9 +49,9 @@ const closeLoginModal = () => {
 };
 
 const isUserMenuOpen = computed(() => state.isUserMenuOpen);
-const toggleUserMenu = () => {
+const setUserMenu = (flag: boolean) => {
   if (!state.isDashboardOpen) {
-    state.isUserMenuOpen = !state.isUserMenuOpen;
+    state.isUserMenuOpen = flag;
   }
 };
 
@@ -67,9 +64,9 @@ const uiState = {
   showTosModal,
   setShowWarning,
   toggleDashboardModal,
-  closeLoginModal,
   openLoginModal,
-  toggleUserMenu,
+  closeLoginModal,
+  setUserMenu,
   setUnsaved,
 };
 

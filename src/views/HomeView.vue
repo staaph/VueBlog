@@ -11,5 +11,3 @@
 import FeaturedSection from '@/components/Home/FeaturedSection.vue';
 import HomeHeader from '@/components/Home/HomeHeader.vue';
 </script>
-
-<style></style>

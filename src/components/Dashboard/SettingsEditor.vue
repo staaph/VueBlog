@@ -23,10 +23,7 @@
             v-model="confirm_password"
           />
           <div class="flex text-white justify-between gap-x-8 mt-4">
-            <button
-              class="bg-green-500 px-6 py-1 rounded-md"
-              @click="confirm = !confirm"
-            >
+            <button class="bg-green-500 px-6 py-1 rounded-md" @click="abort">
               No
             </button>
             <button class="bg-red-500 px-6 py-1 rounded-md" @click="delAccount">
@@ -45,8 +42,13 @@ import { ref } from 'vue';
 
 const { deleteAccount } = useFbUtil();
 
-const confirm = ref(false);
+const confirm = ref<boolean>(false);
 const confirm_password = ref<string>('');
+
+const abort = () => {
+  confirm.value = false;
+  confirm_password.value = '';
+};
 
 const delAccount = async () => {
   await deleteAccount(confirm_password.value);

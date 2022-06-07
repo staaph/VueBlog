@@ -16,7 +16,7 @@
         <label for="pw-change">Change Email</label>
         <input type="text" class="input" v-model="newEmail" />
         <div class="flex items-center justify-center">
-          <button @click="changeEmail" class="button">Change Email</button>
+          <button @click="setNewMail" class="button">Change Email</button>
         </div>
       </section>
       <section class="flex flex-col justify-center">
@@ -35,6 +35,8 @@
 
 <script setup lang="ts">
 import { useFbUtil } from '@/composables/useFbUtils';
+import { getAuth } from 'firebase/auth';
+import { ref } from 'vue';
 
 const {
   changeEmail,
@@ -42,8 +44,16 @@ const {
   errorMsg,
   userProvidedPassword,
   newPassword,
-  newEmail,
 } = useFbUtil();
+
+const user = getAuth().currentUser;
+const newEmail = ref<string>(getAuth().currentUser!.email!);
+const setNewMail = async () => {
+  changeEmail(newEmail.value);
+  if (user && user.email) {
+    newEmail.value = user.email;
+  }
+};
 </script>
 
 <style scoped>

@@ -45,7 +45,7 @@ const { toggleDashboardModal, isUnsaved, setShowWarning } = uiState;
 
 const closeDashboard = () => {
   if (isUnsaved.value) {
-    setShowWarning();
+    setShowWarning(true);
   } else {
     toggleDashboardModal(false);
   }
