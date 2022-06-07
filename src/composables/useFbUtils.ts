@@ -24,8 +24,8 @@ export const useFbUtil = () => {
     try {
       await sendPasswordResetEmail(getAuth(), email);
     } catch (error: unknown) {
-      error instanceof FirebaseError ? errorMsg.value =
-      errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
+       error instanceof FirebaseError ? errorMsg.value =
+        errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
     }
   };
 
