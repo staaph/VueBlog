@@ -8,16 +8,10 @@
         </p>
       </section>
       <section class="flex w-full gap-x-6 justify-center mt-3">
-        <button
-          class="px-4 py-1 bg-green-600 rounded hover:bg-green-700"
-          @click="no"
-        >
+        <button class="px-4 py-1 bg-green-600 rounded hover:bg-green-700">
           NO
         </button>
-        <button
-          class="px-4 py-1 bg-red-600 rounded hover:bg-red-700"
-          @click="yes"
-        >
+        <button class="px-4 py-1 bg-red-600 rounded hover:bg-red-700">
           YES
         </button>
       </section>
@@ -25,20 +19,4 @@
   </main>
 </template>
 
-<script setup lang="ts">
-import uiState from '@/store/modalState';
-import { content } from '@/store/dashboardStore';
-
-const { toggleDashboardModal, setUnsaved, setShowWarning } = uiState;
-
-const no = () => {
-  setShowWarning(false);
-};
-
-const yes = () => {
-  setUnsaved(false);
-  setShowWarning(false);
-  toggleDashboardModal(false);
-  content.value = '';
-};
-</script>
+<script setup lang="ts"></script>
