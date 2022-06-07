@@ -22,9 +22,7 @@
 <script setup lang="ts">
 import VueLogo from '@/assets/icons/VueLogo.vue';
 import uiState from '@/store/modalState';
-import { useAuth } from '@/composables/useAuth';
-
-const { user } = useAuth();
+import { user } from '@/composables/useAuth';
 
 const { openLoginModal } = uiState;
 </script>
