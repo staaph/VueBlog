@@ -7,7 +7,6 @@
     <section v-if="isLoginModalOpen" class="centered bg-gray-500/50">
       <LoginModal />
     </section>
-    <CloseWarning v-if="showWarning" class="centered bg-gray-500/50" />
     <router-view />
   </main>
 </template>
@@ -17,9 +16,8 @@ import Navbar from '@/components/Navbar/NavbarComponent.vue';
 import DashboardModal from '@/views/DashboardModal.vue';
 import LoginModal from '@/views/LoginModal.vue';
 import uiState from '@/store/modalState';
-import CloseWarning from '@/components/CloseWarning.vue';
 
-const { isDashboardOpen, isLoginModalOpen, showWarning } = uiState;
+const { isDashboardOpen, isLoginModalOpen } = uiState;
 </script>
 
 <style scoped>
