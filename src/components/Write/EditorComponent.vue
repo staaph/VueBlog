@@ -49,10 +49,10 @@
 import SendIcon from '@/assets/icons/SendIcon.vue';
 import PreviewComponent from '@/components/MarkdownComponent.vue';
 import { ref, type Ref } from 'vue';
-import { content } from '@/store/dashboardStore';
 import { setDocument } from '@/composables/useFirestore';
 
 const title = ref<string>('');
+const content = ref<string>('');
 
 const publish = () => {
   setDocument('content', 'doc1', { text: content.value });

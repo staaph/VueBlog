@@ -19,7 +19,6 @@
         name="username"
         type="text"
         placeholder="johndoe"
-        v-model="username"
         class="input"
         :class="{ 'border border-red-600': errors.username }"
       />
@@ -38,7 +37,6 @@
         name="email"
         type="email"
         placeholder="john.doe@email.com"
-        v-model="email"
         class="input"
         :class="{ 'border border-red-600': errors.email }"
       />
@@ -57,7 +55,6 @@
         name="password"
         type="password"
         placeholder="Enter your password"
-        v-model="password"
         class="input"
         :class="{ 'border border-red-600': errors.password }"
       />
@@ -76,7 +73,6 @@
         name="confirm_password"
         type="password"
         placeholder="Confirm your password"
-        v-model="confirm_password"
         class="input"
         :class="{ 'border border-red-600': errors.confirm_password }"
       />
@@ -85,6 +81,7 @@
     <section>
       <vee-field
         name="tos"
+        :value="true"
         type="checkbox"
         class="rounded-sm outline-none"
         :class="{ 'border border-red-600 ml-10': errors.tos }"
@@ -98,32 +95,29 @@
           Terms of Service
         </button></label
       >
+      <p class="text-sm text-red-600 text-center">
+        {{ errors.tos }}
+      </p>
     </section>
     <TosModal />
     <div v-if="errorMsg" class="text-red-900">{{ errorMsg }}</div>
-    <button
-      class="bg-gray-700 rounded px-6 py-1.5 text-white"
-      @click="register"
-    >
-      Signup
-    </button>
+    <button class="bg-gray-700 rounded px-6 py-1.5 text-white">Signup</button>
   </vee-form>
 </template>
 
 <script setup lang="ts">
 import TosModal from '@/components/Login/TosModal.vue';
-import { ref, type Ref } from 'vue';
-import { getAuth } from '@firebase/auth';
-import { useAuth } from '@/composables/useAuth';
+import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { useAuth, user } from '@/composables/useAuth';
 import uiState from '@/store/modalState';
+import { updateProfile } from 'firebase/auth';
+import { setDocument } from '@/composables/useFirestore';
+import { FirebaseError } from '@firebase/util';
+import { errorMessage } from '@/composables/errorMsg';
+import { auth } from '@/firebase/config';
 
 const { closeLoginModal, showTosModal } = uiState;
-const { signup, errorMsg } = useAuth();
-
-const username: Ref<string> = ref('');
-const email: Ref<string> = ref('');
-const password: Ref<string> = ref('');
-const confirm_password: Ref<string> = ref('');
+const { errorMsg } = useAuth();
 
 const schema = {
   email: 'required|email',
@@ -133,14 +127,27 @@ const schema = {
   tos: 'tos',
 };
 
-const register = async () => {
-  if (password.value === confirm_password.value) {
-    await signup(email.value, password.value);
-    if (getAuth().currentUser) {
-      closeLoginModal();
-    }
-  } else {
-    errorMsg.value = 'passwords do not match';
+const register = async (values: any) => {
+  errorMsg.value = '';
+  try {
+    const cred = await createUserWithEmailAndPassword(
+      auth,
+      values.email,
+      values.password
+    );
+    await setDocument('users', cred.user.uid, {
+      name: values.username,
+      email: values.email,
+    });
+  } catch (error: unknown) {
+    error instanceof FirebaseError
+      ? (errorMsg.value =
+          errorMessage[error.code] ?? 'Something unexpected happened')
+      : (errorMsg.value = 'unknown server error');
+  }
+
+  if (user) {
+    closeLoginModal();
   }
 };
 </script>

@@ -37,7 +37,7 @@ export const useAuth = () => {
    * @param email pass email from input
    * @param password pass password from input
    */
-  const signup = async (email: string, password: string) => {
+  const signup = async (email: string, password: string)=> {
     errorMsg.value = '';
     try {
       await createUserWithEmailAndPassword(auth, email, password);
