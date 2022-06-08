@@ -2,6 +2,7 @@
   <main
     class="flex flex-col items-center h-full justify-center overflow-scroll"
   >
+    {{ username }}
     <div class="w-1/2 flex flex-col gap-y-4">
       <section class="flex flex-col">
         <label>Provide your current password</label>
@@ -47,6 +48,7 @@ const {
 } = useFbUtil();
 
 const user = getAuth().currentUser;
+const username = user!.displayName;
 const newEmail = ref<string>(getAuth().currentUser!.email!);
 const setNewMail = async () => {
   changeEmail(newEmail.value);

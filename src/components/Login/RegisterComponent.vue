@@ -107,15 +107,10 @@
 
 <script setup lang="ts">
 import TosModal from '@/components/Login/TosModal.vue';
-import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { useAuth, user } from '@/composables/useAuth';
 import uiState from '@/store/modalState';
-import { updateProfile } from 'firebase/auth';
-import { setDocument } from '@/composables/useFirestore';
-import { FirebaseError } from '@firebase/util';
-import { errorMessage } from '@/composables/errorMsg';
-import { auth } from '@/firebase/config';
 
+const { signup } = useAuth();
 const { closeLoginModal, showTosModal } = uiState;
 const { errorMsg } = useAuth();
 
@@ -128,24 +123,7 @@ const schema = {
 };
 
 const register = async (values: any) => {
-  errorMsg.value = '';
-  try {
-    const cred = await createUserWithEmailAndPassword(
-      auth,
-      values.email,
-      values.password
-    );
-    await setDocument('users', cred.user.uid, {
-      name: values.username,
-      email: values.email,
-    });
-  } catch (error: unknown) {
-    error instanceof FirebaseError
-      ? (errorMsg.value =
-          errorMessage[error.code] ?? 'Something unexpected happened')
-      : (errorMsg.value = 'unknown server error');
-  }
-
+  await signup(values.email, values.password, values.username);
   if (user) {
     closeLoginModal();
   }

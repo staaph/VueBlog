@@ -6,11 +6,13 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   onAuthStateChanged,
+  updateProfile,
 } from 'firebase/auth';
 import { ref, type Ref } from 'vue';
 import { FirebaseError } from '@firebase/util';
 import { auth } from '@/firebase/config';
 import { errorMessage } from '@/composables/errorMsg';
+import { setDocument } from './useFirestore';
 
 export const user: Ref<object | null> = ref(auth.currentUser);
 
@@ -37,10 +39,17 @@ export const useAuth = () => {
    * @param email pass email from input
    * @param password pass password from input
    */
-  const signup = async (email: string, password: string)=> {
+  const signup = async (email: string, password: string, username: string)=> {
     errorMsg.value = '';
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await setDocument('users', cred.user.uid, {
+        username,
+        email
+      })
+      await updateProfile(cred.user, {
+        displayName: username
+      })
     } catch (error: unknown) {
       error instanceof FirebaseError ? errorMsg.value =
       errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
