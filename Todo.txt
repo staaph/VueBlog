@@ -1,4 +1,3 @@
-TODO on account deletion => delete firstore doc + articles on userid
-TODO display username in profile and allow change
+TODO on account deletion =>  articles on userid
 TODO store articles
 TODO emit dashboard menu state
