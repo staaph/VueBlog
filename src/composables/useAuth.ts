@@ -14,8 +14,18 @@ import { auth } from '@/firebase/config';
 import { errorMessage } from '@/composables/errorMsg';
 import { setDocument } from './useFirestore';
 
-export const user: Ref<object | null> = ref(auth.currentUser);
-
+export const fbUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userFirebase) => {
+        unsubscribe();
+        resolve(userFirebase);
+      },
+      reject
+    );
+  });
+};
 
 export const useAuth = () => {
   const errorMsg: Ref<string | unknown> = ref();
@@ -30,8 +40,10 @@ export const useAuth = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error: unknown) {
-      error instanceof FirebaseError ? errorMsg.value =
-      errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
+      error instanceof FirebaseError
+        ? (errorMsg.value =
+            errorMessage[error.code] ?? 'Something unexpected happened')
+        : (errorMsg.value = 'unknown server error');
     }
   };
 
@@ -40,20 +52,22 @@ export const useAuth = () => {
    * @param email pass email from input
    * @param password pass password from input
    */
-  const signup = async (email: string, password: string, username: string)=> {
+  const signup = async (email: string, password: string, username: string) => {
     errorMsg.value = '';
     try {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       await setDocument('users', cred.user.uid, {
         username,
-        email
-      })
+        email,
+      });
       await updateProfile(cred.user, {
-        displayName: username
-      })
+        displayName: username,
+      });
     } catch (error: unknown) {
-      error instanceof FirebaseError ? errorMsg.value =
-      errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
+      error instanceof FirebaseError
+        ? (errorMsg.value =
+            errorMessage[error.code] ?? 'Something unexpected happened')
+        : (errorMsg.value = 'unknown server error');
     }
   };
 
@@ -100,11 +114,6 @@ export const useAuth = () => {
       }
     }
   };
-
-  onAuthStateChanged(auth, (_user: object|null) => {
-    user.value = _user;
-    return user;
-  });
 
   return {
     login,
