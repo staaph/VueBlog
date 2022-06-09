@@ -14,7 +14,10 @@
         >
           <SearchIcon />
         </button>
-        <button class="rounded px-3 p-0.5 dark:text-white">
+        <button
+          class="rounded px-3 p-0.5 dark:text-white"
+          @click="isInfoMenuOpen = true"
+        >
           <InfoButton />
         </button>
       </div>
@@ -56,6 +59,7 @@ import InfoButton from '@/assets/icons/InfoButton.vue';
 import PreviewComponent from '@/components/MarkdownComponent.vue';
 import { ref, type Ref } from 'vue';
 import { setDocument } from '@/composables/useFirestore';
+import { isInfoMenuOpen } from '@/store/dashboardStore';
 
 const title = ref<string>('');
 const content = ref<string>('');
@@ -67,6 +71,5 @@ const publish = () => {
 const view: Ref<string> = ref('write');
 const setView = (value: string) => {
   view.value = value;
-  console.log(view.value);
 };
 </script>
