@@ -1,18 +1,21 @@
 <template>
   <main class="h-full">
     <section class="mb-2 items-center">
-      <div class="flex flex-row gap-x-5 justify-center items-center">
+      <div class="flex flex-row gap-x-3 items-center">
         <button
           class="bg-gray-200 rounded px-3 p-0.5"
           @click.prevent="setView('write')"
         >
-          Write
+          <WriteIcon />
         </button>
         <button
           class="bg-gray-200 rounded px-3 p-0.5"
           @click.prevent="setView('preview')"
         >
-          Preview
+          <SearchIcon />
+        </button>
+        <button class="rounded px-3 p-0.5 dark:text-white">
+          <InfoButton />
         </button>
       </div>
     </section>
@@ -47,6 +50,9 @@
 
 <script setup lang="ts">
 import SendIcon from '@/assets/icons/SendIcon.vue';
+import WriteIcon from '@/assets/icons/WriteIcon.vue';
+import SearchIcon from '@/assets/icons/SearchIcon.vue';
+import InfoButton from '@/assets/icons/InfoButton.vue';
 import PreviewComponent from '@/components/MarkdownComponent.vue';
 import { ref, type Ref } from 'vue';
 import { setDocument } from '@/composables/useFirestore';

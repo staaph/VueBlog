@@ -1,6 +1,10 @@
 <template>
   <main class="h-full overflow-scroll">
-    <p v-text="errorMsg" class="text-center text-red-600 mb-4" />
+    <p
+      v-if="errorMsg"
+      v-text="errorMsg"
+      class="text-center text-red-600 font-semibold mb-4 w-full rounded-sm h-12 items-center flex justify-center"
+    />
     <div class="flex flex-col gap-y-4">
       <!-- USERNAME -->
       <section class="flex flex-row w-full items-center">
@@ -39,6 +43,7 @@
         placeholder="••••••••"
         class="input"
         v-model="userProvidedPassword"
+        :class="{ 'border border-red-600': errorMsg }"
       />
     </section>
   </main>
@@ -83,10 +88,10 @@ const changeUsername = async () => {
 
 <style scoped>
 .input {
-  @apply placeholder:text-gray-400 w-full bg-transparent border text-gray-700 dark:text-gray-300 dark:border-gray-600 px-3 p-2 rounded-md outline-none focus:border-blue-600 dark:focus:border-blue-600;
+  @apply placeholder:text-gray-400 w-full bg-transparent border text-gray-700 dark:text-gray-300 px-3 p-2 rounded-md outline-none focus:border-blue-600 dark:focus:border-blue-600;
 }
 
 .button {
-  @apply bg-gray-700 rounded px-6 py-1 text-white;
+  @apply bg-gray-800 rounded px-6 py-1 text-white;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <main class="flex justify-center items-center h-full">
+  <main>
     <section class="flex flex-col">
-      <div class="flex flex-row gap-x-3 items-center">
+      <div class="flex flex-row gap-x-3">
         <h1 class="font-medium text-xl">Delete Account ?</h1>
         <button
           class="bg-red-600 px-2 py-1 rounded-sm text-white"

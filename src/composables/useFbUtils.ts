@@ -52,7 +52,7 @@ export const useFbUtil = () => {
         errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
       }
     } else {
-      errorMsg.value = 'provide a password';
+      errorMsg.value = 'please confirm your password';
     }
   };
 
@@ -72,7 +72,7 @@ export const useFbUtil = () => {
         errorMessage[error.code] ?? 'Something unexpected happened' : errorMsg.value = 'unknown server error';
       }
     } else {
-      errorMsg.value = 'provide a password';
+      errorMsg.value = 'please confirm your password';
     }
   };
 
