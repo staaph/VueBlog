@@ -3,13 +3,13 @@
     <section class="mb-2 items-center">
       <div class="flex flex-row gap-x-3 items-center">
         <button
-          class="bg-gray-200 rounded px-3 p-0.5"
+          class="dark:bg-gray-200 border rounded px-3 p-0.5"
           @click.prevent="setView('write')"
         >
           <WriteIcon />
         </button>
         <button
-          class="bg-gray-200 rounded px-3 p-0.5"
+          class="dark:bg-gray-200 border rounded px-3 p-0.5"
           @click.prevent="setView('preview')"
         >
           <SearchIcon />
@@ -25,7 +25,7 @@
     <section class="flex flex-col h-full" v-if="view == 'write'">
       <input
         type="text"
-        class="w-full mb-1 rounded h-10 dark:bg-gray-300"
+        class="w-full mb-1 rounded h-10 dark:bg-gray-300 border border-black"
         placeholder="title"
         v-model="title"
       />
