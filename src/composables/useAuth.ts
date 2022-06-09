@@ -27,6 +27,8 @@ export const fbUser = () => {
   });
 };
 
+export const user: Ref<object | null> = ref(auth.currentUser);
+
 export const useAuth = () => {
   const errorMsg: Ref<string | unknown> = ref();
 
@@ -114,6 +116,11 @@ export const useAuth = () => {
       }
     }
   };
+
+  onAuthStateChanged(auth, (_user: object | null) => {
+    user.value = _user;
+    return user;
+  });
 
   return {
     login,

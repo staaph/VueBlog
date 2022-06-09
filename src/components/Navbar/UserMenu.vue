@@ -56,12 +56,11 @@ import { useAuth } from '@/composables/useAuth';
 import { getAuth } from 'firebase/auth';
 import ArticleIcon from '@/assets/icons/ArticleIcon.vue';
 import DashboardIcon from '@/assets/icons/DashboardIcon.vue';
+import { user } from '@/composables/useAuth';
 
 const { logout } = useAuth();
 const { openLoginModal, toggleDashboardModal, setUserMenu, isDashboardOpen } =
   uiState;
-
-const user = getAuth().currentUser;
 
 const signOut = async () => {
   await logout();

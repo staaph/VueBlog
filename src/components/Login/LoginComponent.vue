@@ -17,7 +17,6 @@
         name="email"
         placeholder="john.doe@email.com"
         class="input"
-        v-model="email"
         :class="{ 'border border-red-600': errors.email }"
       />
       <p class="text-sm text-red-600">{{ errors.email }}</p>
@@ -41,7 +40,6 @@
         name="password"
         placeholder="Enter your password"
         class="input"
-        v-model="password"
         :class="{ 'border border-red-600': errors.password }"
       />
       <p class="text-sm text-red-600">{{ errors.password }}</p>
@@ -52,7 +50,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from 'vue';
 import uiState from '@/store/modalState';
 import { useAuth } from '@/composables/useAuth';
 import { getAuth } from '@firebase/auth';
@@ -61,16 +58,13 @@ import { setLogin } from '@/store/loginStore';
 const { closeLoginModal } = uiState;
 const { login, errorMsg } = useAuth();
 
-const email: Ref<string> = ref('');
-const password: Ref<string> = ref('');
-
 const schema = {
   email: 'required',
   password: 'required',
 };
 
-const signIn = async () => {
-  await login(email.value, password.value);
+const signIn = async (values: { email: string; password: string }) => {
+  await login(values.email, values.password);
   if (getAuth().currentUser) {
     closeLoginModal();
   }

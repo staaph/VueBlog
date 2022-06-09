@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import { fbUser } from '@/composables/useAuth';
+import { ref } from 'vue';
 
 const requireAuth = async(to, from, next) => {
   const user = await fbUser()
@@ -11,8 +12,8 @@ const requireAuth = async(to, from, next) => {
   }
 }
 const requireNoAuth = async(to, from, next) => {
-  const user = await fbUser()
-  if(user){
+  const user = ref(await fbUser())
+  if(user.value){
     next({name:'home'})
   }
   else{

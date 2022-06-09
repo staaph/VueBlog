@@ -123,7 +123,7 @@ const schema = {
   tos: 'tos',
 };
 
-const register = async (values: any) => {
+const register = async (values: typeof schema) => {
   const user = getAuth().currentUser;
   await signup(values.email, values.password, values.username);
   if (user) {
