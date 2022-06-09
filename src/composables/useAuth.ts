@@ -16,6 +16,7 @@ import { setDocument } from './useFirestore';
 
 export const user: Ref<object | null> = ref(auth.currentUser);
 
+
 export const useAuth = () => {
   const errorMsg: Ref<string | unknown> = ref();
 

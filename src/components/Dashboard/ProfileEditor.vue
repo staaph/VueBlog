@@ -46,8 +46,9 @@
 
 <script setup lang="ts">
 import { useFbUtil } from '@/composables/useFbUtils';
+import { updateDocument } from '@/composables/useFirestore';
 import { getAuth, updateProfile } from 'firebase/auth';
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 
 const {
   changeEmail,
@@ -72,6 +73,9 @@ const changeUsername = async () => {
   if (user !== null) {
     await updateProfile(user, {
       displayName: username.value,
+    });
+    await updateDocument('users', user.uid, {
+      username: username.value,
     });
   }
 };

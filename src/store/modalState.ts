@@ -15,8 +15,7 @@ const toggleDashboardModal = (flag: boolean) => {
   if (flag == true && getAuth().currentUser != null) {
     state.isDashboardOpen = true;
     state.isUserMenuOpen = false;
-  }
-  else if(flag == false){
+  } else if (flag == false) {
     state.isDashboardOpen = false;
     state.isUserMenuOpen = false;
   }
@@ -24,16 +23,15 @@ const toggleDashboardModal = (flag: boolean) => {
 
 const isLoginModalOpen = computed(() => state.isLoginModalOpen);
 const openLoginModal = () => {
-  if(getAuth().currentUser == null){
-    state.isLoginModalOpen = true
-    state.isUserMenuOpen = false
+  if (getAuth().currentUser == null) {
+    state.isLoginModalOpen = true;
+    state.isUserMenuOpen = false;
   }
-
-}
+};
 const closeLoginModal = () => {
-  state.isLoginModalOpen = false
+  state.isLoginModalOpen = false;
   state.isUserMenuOpen = false;
-  setLogin('login')
+  setLogin('login');
 };
 
 const isUserMenuOpen = computed(() => state.isUserMenuOpen);

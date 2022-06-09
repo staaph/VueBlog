@@ -39,6 +39,8 @@
 <script setup lang="ts">
 import { useFbUtil } from '@/composables/useFbUtils';
 import { ref } from 'vue';
+import { deleteDocument } from '@/composables/useFirestore';
+import { getAuth } from '@firebase/auth';
 
 const { deleteAccount } = useFbUtil();
 
@@ -50,7 +52,11 @@ const abort = () => {
   confirm_password.value = '';
 };
 
+const user = getAuth().currentUser;
 const delAccount = async () => {
-  await deleteAccount(confirm_password.value);
+  if (user !== null) {
+    await deleteDocument('users', user.uid);
+    await deleteAccount(confirm_password.value);
+  }
 };
 </script>
