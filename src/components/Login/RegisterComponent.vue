@@ -110,6 +110,7 @@ import TosModal from '@/components/Login/TosModal.vue';
 import { useAuth } from '@/composables/useAuth';
 import uiState from '@/store/modalState';
 import { getAuth } from '@firebase/auth';
+import { useRouter } from 'vue-router';
 
 const { signup } = useAuth();
 const { closeLoginModal, showTosModal } = uiState;
@@ -123,11 +124,13 @@ const schema = {
   tos: 'tos',
 };
 
+const router = useRouter();
 const register = async (values: typeof schema) => {
   const user = getAuth().currentUser;
   await signup(values.email, values.password, values.username);
   if (user) {
     closeLoginModal();
+    router.push('/');
   }
 };
 </script>

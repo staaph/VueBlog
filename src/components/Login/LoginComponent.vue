@@ -54,6 +54,7 @@ import uiState from '@/store/modalState';
 import { useAuth } from '@/composables/useAuth';
 import { getAuth } from '@firebase/auth';
 import { setLogin } from '@/store/loginStore';
+import { useRouter } from 'vue-router';
 
 const { closeLoginModal } = uiState;
 const { login, errorMsg } = useAuth();
@@ -63,10 +64,12 @@ const schema = {
   password: 'required',
 };
 
-const signIn = async (values: { email: string; password: string }) => {
+const router = useRouter();
+const signIn = async (values: typeof schema) => {
   await login(values.email, values.password);
   if (getAuth().currentUser) {
     closeLoginModal();
+    router.push('/');
   }
 };
 </script>
