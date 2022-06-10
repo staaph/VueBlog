@@ -1,25 +1,25 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory,
+} from 'vue-router';
 import { fbUser } from '@/composables/useAuth';
-import { ref } from 'vue';
 
-const requireAuth = async(to: any, from: any, next: any) => {
-  const user = await fbUser()
-  if(!user){
-    next({name:'requireLogin'})
+const requireAuth = async () => {
+  const user = await fbUser();
+  if (!user) {
+    return { name: 'requireLogin' };
+  } else {
+    return;
   }
-  else{
-    next()
+};
+const requireNoAuth = async () => {
+  const user = await fbUser();
+  if (user) {
+    return { name: 'home' }
+  } else {
+    return
   }
-}
-const requireNoAuth = async(to:any, from:any, next:any) => {
-  const user = ref(await fbUser())
-  if(user.value){
-    next({name:'home'})
-  }
-  else{
-    next()
-  }
-}
+};
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,13 +38,13 @@ const router = createRouter({
       path: '/write',
       name: 'write',
       component: () => import('@/views/WriteArticle.vue'),
-      beforeEnter: requireAuth
+      beforeEnter: requireAuth,
     },
     {
       path: '/requirelogin',
       name: 'requireLogin',
       component: () => import('@/views/LoginRequired.vue'),
-      beforeEnter: requireNoAuth
+      beforeEnter: requireNoAuth,
     },
     {
       path: '/:catchAll(.*)*',
