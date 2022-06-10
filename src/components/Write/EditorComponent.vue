@@ -58,14 +58,22 @@ import SearchIcon from '@/assets/icons/SearchIcon.vue';
 import InfoButton from '@/assets/icons/InfoButton.vue';
 import PreviewComponent from '@/components/MarkdownComponent.vue';
 import { ref, type Ref } from 'vue';
-import { setDocument } from '@/composables/useFirestore';
+import { addDocument } from '@/composables/useFirestore';
 import { isInfoMenuOpen } from '@/store/dashboardStore';
+import { getAuth } from '@firebase/auth';
 
 const title = ref<string>('');
 const content = ref<string>('');
 
-const publish = () => {
-  setDocument('content', 'doc1', { text: content.value });
+const publish = async () => {
+  const timestamp = Date.now();
+  const user = getAuth()!.currentUser!.uid;
+  await addDocument('articles', {
+    user_id: user,
+    title: title.value,
+    content: content.value,
+    data: timestamp,
+  });
 };
 
 const view: Ref<string> = ref('write');
