@@ -1,7 +1,5 @@
 <template>
-  <main
-    class="fixed border p-8 rounded h-[90%] w-[90%] bg-white dark:bg-gray-700"
-  >
+  <main class="fixed border p-8 rounded h-3/4 w-3/4 bg-white dark:bg-gray-700">
     <CloseIcon
       class="absolute top-2 right-2 cursor-pointer dark:text-white text-gray-600"
       @click.prevent="toggleDashboardModal(false)"

@@ -13,6 +13,9 @@ import { FirebaseError } from '@firebase/util';
 import { auth } from '@/firebase/config';
 import { errorMessage } from '@/composables/errorMsg';
 import { setDocument } from './useFirestore';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 
 export const fbUser = () => {
   return new Promise((resolve, reject) => {
@@ -41,6 +44,7 @@ export const useAuth = () => {
     errorMsg.value = '';
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      router.push('/')
     } catch (error: unknown) {
       error instanceof FirebaseError
         ? (errorMsg.value =
@@ -65,6 +69,7 @@ export const useAuth = () => {
       await updateProfile(cred.user, {
         displayName: username,
       });
+      router.push('/')
     } catch (error: unknown) {
       error instanceof FirebaseError
         ? (errorMsg.value =
