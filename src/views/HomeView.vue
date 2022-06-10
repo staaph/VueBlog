@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="h-full">
     <HomeHeader />
     <div class="px-10 md:px-32 pt-12 pb-16">
       <FeaturedSection />
