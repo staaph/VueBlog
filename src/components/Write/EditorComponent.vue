@@ -65,15 +65,18 @@ import { getAuth } from '@firebase/auth';
 const title = ref<string>('');
 const content = ref<string>('');
 
+const user = getAuth().currentUser;
 const publish = async () => {
-  const timestamp = Date.now();
-  const user = getAuth()!.currentUser!.uid;
-  await addDocument('articles', {
-    user_id: user,
-    title: title.value,
-    content: content.value,
-    data: timestamp,
-  });
+  if (user) {
+    const timestamp = Date.now();
+    await addDocument('articles', {
+      user: user.uid,
+      username: user.displayName,
+      title: title.value,
+      content: content.value,
+      date: timestamp,
+    });
+  }
 };
 
 const view: Ref<string> = ref('write');

@@ -63,7 +63,7 @@ const delAccount = async () => {
   if (user !== null && confirm_password.value.length !== 0) {
     await deleteDocument('users', user.uid);
     await deleteAccount(confirm_password.value);
-    router.push('');
+    router.push('/');
   } else {
     errorMsg.value = 'please confirm your password';
   }

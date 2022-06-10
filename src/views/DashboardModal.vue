@@ -11,7 +11,7 @@
           v-if="menuItem === 'dashboard'"
           class="flex items-center justify-center h-full w-full dark:text-white"
         >
-          <p>Dashboard</p>
+          <DashboardArticles />
         </div>
         <div v-if="menuItem === 'profile'" class="ml-12 w-full dark:text-white">
           <ProfileEditor />
@@ -34,6 +34,7 @@ import DashboardMenu from '@/components/Dashboard/DashboardMenu.vue';
 import ProfileEditor from '@/components/Dashboard/ProfileEditor.vue';
 import SettingsEditor from '@/components/Dashboard/SettingsEditor.vue';
 import { menuItem } from '@/store/dashboardStore';
+import DashboardArticles from '../components/Dashboard/DashboardArticles.vue';
 
 const { toggleDashboardModal } = uiState;
 </script>

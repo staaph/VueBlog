@@ -9,11 +9,8 @@
 
 <script setup lang="ts">
 import Editor from '@/components/Write/EditorComponent.vue';
-import { stopPageLeave } from '@/composables/stopPageLeave';
 import InfoMenu from '@/components/Write/InfoMenu.vue';
 import { isInfoMenuOpen } from '@/store/dashboardStore';
-
-stopPageLeave(true);
 </script>
 
 <style scoped>

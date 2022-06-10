@@ -9,10 +9,10 @@
             class="font-bold text-3xl text-gray-400"
           />
           <div class="flex flex-col text-sm dark:text-white">
-            <span v-text="article.description" class="font-semibold" />
+            <span v-text="article.title" class="font-semibold" />
             <div class="flex flex-row gap-x-2 font-light">
-              <span v-text="article.author + ','" />
-              <span v-text="article.date" />
+              <span v-text="article.username + ','" />
+              <span>{{ formatTime(article.date) }}</span>
             </div>
           </div>
         </div>
@@ -22,7 +22,31 @@
 </template>
 
 <script setup lang="ts">
-import blogdata from '@/blogdata.json';
+import { getDocs, collection, getFirestore } from '@firebase/firestore';
+import { onBeforeMount, reactive } from 'vue';
+import { formatTime } from '@/plugins/formatTime';
 
-const articles = blogdata.articles;
+interface Articles {
+  content: string;
+  date: number;
+  docID: string;
+  title: string;
+  user: string;
+  username: string;
+}
+
+const articles = reactive<Articles[]>([]);
+const getArticles = async () => {
+  const snapshot = await getDocs(collection(getFirestore(), 'articles'));
+  snapshot.forEach((document) => {
+    articles.push({
+      docID: document.id,
+      ...document.data(),
+    } as Articles);
+  });
+};
+
+onBeforeMount(async () => {
+  getArticles();
+});
 </script>
