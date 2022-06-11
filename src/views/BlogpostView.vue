@@ -1,14 +1,25 @@
 <template>
   <main class="dark:text-white px-10 md:px-32 pt-12 pb-16">
-    <div class="text-center mb-10">
-      <div v-text="markdown.title" class="text-3xl font-bold" />
-      <div v-text="markdown.author" class="font-light" />
+    <div class="text-center mb-10" v-if="content">
+      <div v-text="content.title" class="text-3xl font-bold" />
+      <div v-text="content.username" class="font-light" />
     </div>
-    <MarkdownComponent :content="markdown.content" />
+    <MarkdownComponent v-if="content" :content="content.content" />
   </main>
 </template>
 
 <script setup lang="ts">
 import MarkdownComponent from '@/components/MarkdownComponent.vue';
-import { markdown } from '@/markdown';
+import { onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
+import { getDoc, doc, getFirestore } from '@firebase/firestore';
+
+const route = useRoute();
+const content = ref();
+
+onMounted(async () => {
+  const docID = route.params.id as string;
+  const article = await getDoc(doc(getFirestore(), 'articles', docID));
+  content.value = article.data();
+});
 </script>

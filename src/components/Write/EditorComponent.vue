@@ -44,7 +44,7 @@
     </section>
     <section class="flex flex-col h-full" v-if="view == 'preview'">
       <PreviewComponent
-        class="h-full px-2 border border-black overflow-scroll rounded w-full resize-none outline-none dark:bg-gray-300"
+        class="h-full p-2 border border-black overflow-scroll rounded w-full resize-none outline-none dark:bg-gray-300"
         :content="content"
       />
     </section>

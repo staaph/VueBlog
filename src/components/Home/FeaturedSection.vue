@@ -1,8 +1,8 @@
 <template>
   <h1 class="mb-10 font-semibold text-gray-400 text-2xl">Latest</h1>
   <main class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-    <article v-for="(article, key) in articles" :key="key">
-      <a :href="`/post`">
+    <article v-for="(article, key) in articles" :key="article.docID">
+      <router-link :to="{ name: 'post', params: { id: article.docID } }">
         <div class="flex flex-row gap-x-3">
           <div
             v-text="'0' + (key + 1)"
@@ -16,7 +16,7 @@
             </div>
           </div>
         </div>
-      </a>
+      </router-link>
     </article>
   </main>
 </template>

@@ -1,3 +1,4 @@
 TODO on account deletion =>  articles on userid
-TODO store articles
-TODO emit dashboard menu state
+TODO check error on new password
+TODO publish handling in editor
+TODO user feedback on all inputs
