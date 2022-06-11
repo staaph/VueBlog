@@ -46,9 +46,9 @@ const goToPost = (id: string) => {
 const userArticles = reactive<Articles[]>([]);
 
 onBeforeMount(async () => {
-  const songsCollection = collection(getFirestore(), 'articles');
+  const articlesCollection = collection(getFirestore(), 'articles');
   const q = query(
-    songsCollection,
+    articlesCollection,
     where('user', '==', getAuth()!.currentUser!.uid)
   );
   const qSnapshot = await getDocs(q);

@@ -70,6 +70,7 @@ const goToWrite = () => {
 
 const signOut = async () => {
   await logout();
+  router.push('/');
   if (getAuth().currentUser === null) {
     setUserMenu(false);
   }

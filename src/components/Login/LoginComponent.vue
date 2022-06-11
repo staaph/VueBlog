@@ -67,7 +67,8 @@ const schema = {
 const router = useRouter();
 const signIn = async (values: typeof schema) => {
   await login(values.email, values.password);
-  if (user) {
+  if (user.value !== null) {
+    console.log(user.value);
     closeLoginModal();
     router.push('/');
   }

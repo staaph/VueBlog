@@ -44,6 +44,14 @@ import { ref } from 'vue';
 import { deleteDocument } from '@/composables/useFirestore';
 import { getAuth } from '@firebase/auth';
 import { useRouter } from 'vue-router';
+import {
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from '@firebase/firestore';
 
 const { deleteAccount } = useFbUtil();
 
@@ -61,6 +69,16 @@ const errorMsg = ref('');
 const user = getAuth().currentUser;
 const delAccount = async () => {
   if (user !== null && confirm_password.value.length !== 0) {
+    const articlesCollection = collection(getFirestore(), 'articles');
+    const q = query(
+      articlesCollection,
+      where('user', '==', getAuth()!.currentUser!.uid)
+    );
+    const qSnapshot = await getDocs(q);
+    qSnapshot.forEach((doc) => {
+      deleteDocument('articles', doc.id);
+    });
+
     await deleteDocument('users', user.uid);
     await deleteAccount(confirm_password.value);
     router.push('/');

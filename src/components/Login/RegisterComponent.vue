@@ -127,7 +127,7 @@ const schema = {
 const router = useRouter();
 const register = async (values: typeof schema) => {
   await signup(values.email, values.password, values.username);
-  if (user) {
+  if (user.value !== null) {
     closeLoginModal();
     router.push('/');
   }
