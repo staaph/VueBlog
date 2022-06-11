@@ -1,7 +1,7 @@
 <template>
   <h1 class="mb-10 font-semibold text-gray-400 text-2xl">Latest</h1>
-  <main class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-    <article v-for="(article, key) in articles" :key="article.docID">
+  <main class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10" v-if="articles">
+    <article v-for="(article, key) in articles" :key="key">
       <router-link :to="{ name: 'post', params: { id: article.docID } }">
         <div class="flex flex-row gap-x-3">
           <div
@@ -25,17 +25,10 @@
 import { getDocs, collection, getFirestore } from '@firebase/firestore';
 import { onBeforeMount, reactive } from 'vue';
 import { formatTime } from '@/plugins/formatTime';
-
-interface Articles {
-  content: string;
-  date: number;
-  docID: string;
-  title: string;
-  user: string;
-  username: string;
-}
+import type { Articles } from '@/interfaces/Article';
 
 const articles = reactive<Articles[]>([]);
+
 const getArticles = async () => {
   const snapshot = await getDocs(collection(getFirestore(), 'articles'));
   snapshot.forEach((document) => {
@@ -46,7 +39,7 @@ const getArticles = async () => {
   });
 };
 
-onBeforeMount(async () => {
+onBeforeMount(() => {
   getArticles();
 });
 </script>

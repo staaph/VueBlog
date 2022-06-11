@@ -35,7 +35,7 @@ const router = createRouter({
       component: () => import('@/views/BlogpostView.vue'),
     },
     {
-      path: '/write',
+      path: '/write/:id?',
       name: 'write',
       component: () => import('@/views/WriteArticle.vue'),
       beforeEnter: requireAuth,

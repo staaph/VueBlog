@@ -23,9 +23,9 @@
       id="user-menu-item-2"
       @click="setUserMenu(false)"
     >
-      <router-link to="/write" class="flex flex-row gap-x-1"
-        ><ArticleIcon />Write</router-link
-      >
+      <div @click="goToWrite" class="flex flex-row gap-x-1">
+        <ArticleIcon />Write
+      </div>
     </button>
     <button
       class="block px-4 py-2 text-sm text-gray-700"
@@ -57,10 +57,16 @@ import { getAuth } from 'firebase/auth';
 import ArticleIcon from '@/assets/icons/ArticleIcon.vue';
 import DashboardIcon from '@/assets/icons/DashboardIcon.vue';
 import { user } from '@/composables/useAuth';
+import { useRouter } from 'vue-router';
 
 const { logout } = useAuth();
 const { openLoginModal, toggleDashboardModal, setUserMenu, isDashboardOpen } =
   uiState;
+
+const router = useRouter();
+const goToWrite = () => {
+  router.push('/write');
+};
 
 const signOut = async () => {
   await logout();

@@ -1,5 +1,5 @@
 <template>
-  <aside class="flex flex-col">
+  <aside class="flex flex-col mr-6">
     <div
       class="overflow-y-auto overflow-x-hidden flex flex-col justify-between"
     >

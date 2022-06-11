@@ -57,17 +57,20 @@ import WriteIcon from '@/assets/icons/WriteIcon.vue';
 import SearchIcon from '@/assets/icons/SearchIcon.vue';
 import InfoButton from '@/assets/icons/InfoButton.vue';
 import PreviewComponent from '@/components/MarkdownComponent.vue';
-import { ref, type Ref } from 'vue';
-import { addDocument } from '@/composables/useFirestore';
+import { onMounted, ref, type Ref } from 'vue';
+import { addDocument, updateDocument } from '@/composables/useFirestore';
 import { isInfoMenuOpen } from '@/store/dashboardStore';
 import { getAuth } from '@firebase/auth';
+import { useRoute } from 'vue-router';
+import { getDoc, doc, getFirestore } from '@firebase/firestore';
 
 const title = ref<string>('');
 const content = ref<string>('');
+const route = useRoute();
 
 const user = getAuth().currentUser;
 const publish = async () => {
-  if (user) {
+  if (user && !route.params.id) {
     const timestamp = Date.now();
     await addDocument('articles', {
       user: user.uid,
@@ -76,6 +79,12 @@ const publish = async () => {
       content: content.value,
       date: timestamp,
     });
+  } else {
+    const docID = route.params.id as string;
+    await updateDocument('articles', docID, {
+      title: title.value,
+      content: content.value,
+    });
   }
 };
 
@@ -83,4 +92,16 @@ const view: Ref<string> = ref('write');
 const setView = (value: string) => {
   view.value = value;
 };
+
+onMounted(async () => {
+  if (route.params.id) {
+    const docID = route.params.id as string;
+    const article = await getDoc(doc(getFirestore(), 'articles', docID));
+    const test = article.data();
+    if (test) {
+      content.value = test.content;
+      title.value = test.title;
+    }
+  }
+});
 </script>
