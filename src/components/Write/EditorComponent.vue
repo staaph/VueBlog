@@ -77,8 +77,8 @@ const title = ref<string>('');
 const content = ref<string>('');
 const route = useRoute();
 const requiredError = ref<string>('');
-
 const view: Ref<string> = ref('write');
+
 const setView = (value: string) => {
   view.value = value;
 };

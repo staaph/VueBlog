@@ -1,5 +1,5 @@
 <template>
-  <div v-html="markupData"></div>
+  <div v-html="markupData" />
 </template>
 
 <script setup lang="ts">
