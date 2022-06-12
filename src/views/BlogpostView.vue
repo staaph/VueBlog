@@ -1,5 +1,5 @@
 <template>
-  <main class="dark:text-white px-10 md:px-32 pt-12 pb-16">
+  <main class="dark:text-white px-10 md:px-32 pt-12 pb-16 break-all">
     <div class="text-center mb-10" v-if="content">
       <div v-text="content.title" class="text-3xl font-bold" />
       <div v-text="content.username" class="font-light" />
