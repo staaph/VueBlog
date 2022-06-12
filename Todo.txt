@@ -1,5 +1,4 @@
 TODO on account deletion =>  articles on userid
 TODO check error on new password
-TODO publish handling in editor
 TODO user feedback on all inputs
 TODO show error on wrong docid query

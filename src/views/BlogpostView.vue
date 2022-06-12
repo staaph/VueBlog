@@ -11,15 +11,20 @@
 <script setup lang="ts">
 import MarkdownComponent from '@/components/MarkdownComponent.vue';
 import { onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { getDoc, doc, getFirestore } from '@firebase/firestore';
 
 const route = useRoute();
 const content = ref();
-
+const router = useRouter();
 onMounted(async () => {
   const docID = route.params.id as string;
   const article = await getDoc(doc(getFirestore(), 'articles', docID));
-  content.value = article.data();
+  console.log(article.data());
+  if (!article.data()) {
+    router.push({ name: 'error' });
+  } else {
+    content.value = article.data();
+  }
 });
 </script>
