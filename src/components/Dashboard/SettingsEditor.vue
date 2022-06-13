@@ -46,7 +46,6 @@ import { getAuth } from '@firebase/auth';
 import { useRouter } from 'vue-router';
 import {
   collection,
-  doc,
   getDocs,
   getFirestore,
   query,
