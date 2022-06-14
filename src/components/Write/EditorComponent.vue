@@ -20,17 +20,21 @@
         >
           <InfoButton />
         </button>
-        <div
-          v-if="requiredError"
-          v-text="requiredError"
-          class="w-full flex justify-center"
-        />
-        <div class="flex w-full justify-end pt-1.5">
+
+        <div class="flex w-full justify-end pt-1.5 items-center">
+          <div
+            v-if="requiredError"
+            v-text="requiredError"
+            class="text-red-600 mr-2 flex justify-center w-full"
+          />
           <button
-            class="flex py-1 items-center rounded bg-gray-200 dark:bg-gray-300 text-black px-2"
+            class="flex py-1 items-center rounded bg-gray-200 dark:bg-gray-300 text-black px-2 active:scale-95"
             @click="publish"
             :disabled="content.length == 0"
-            :class="{ hidden: content.length == 0 }"
+            :class="{
+              hidden: content.length == 0,
+              'border border-red-600': requiredError,
+            }"
           >
             <SendIcon class="h-5 w-5 mr-1" />Publish
           </button>
@@ -40,10 +44,14 @@
     <section class="flex flex-col h-full" v-if="view == 'write'">
       <input
         type="text"
-        class="w-full mb-1 rounded h-10 dark:bg-gray-300 border border-black"
+        class="w-full mb-1 rounded h-10 dark:bg-gray-300"
         placeholder="title"
         v-model="title"
         required
+        :class="{
+          'border border-red-600': requiredError,
+          'border border-black': !requiredError,
+        }"
       />
       <textarea
         v-model="content"
@@ -65,7 +73,7 @@ import WriteIcon from '@/assets/icons/WriteIcon.vue';
 import SearchIcon from '@/assets/icons/SearchIcon.vue';
 import InfoButton from '@/assets/icons/InfoButton.vue';
 import PreviewComponent from '@/components/MarkdownComponent.vue';
-import { onBeforeMount, ref, type Ref } from 'vue';
+import { onBeforeMount, ref, watch, type Ref } from 'vue';
 import { addDocument, updateDocument } from '@/composables/useFirestore';
 import { isInfoMenuOpen } from '@/store/dashboardStore';
 import { getAuth } from '@firebase/auth';
@@ -94,6 +102,8 @@ const publish = async () => {
       content: content.value,
       date: timestamp,
     });
+    content.value = '';
+    title.value = '';
   } else if (user && route.params.id && title.value.length !== 0) {
     const docID = route.params.id as string;
     await updateDocument('articles', docID, {
@@ -104,6 +114,12 @@ const publish = async () => {
     requiredError.value = 'must specify a title';
   }
 };
+
+watch(title, () => {
+  if (title.value.length > 0) {
+    requiredError.value = '';
+  }
+});
 
 onBeforeMount(async () => {
   if (route.params.id) {

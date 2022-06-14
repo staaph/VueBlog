@@ -1,7 +1,7 @@
 <template>
   <h1 class="mb-10 font-semibold text-gray-400 text-2xl">Latest</h1>
   <main class="grid sm:grid-cols-2 lg:grid-cols-3 gap-10" v-if="articles">
-    <article v-for="(article, key) in articles" :key="key">
+    <article v-for="(article, key) in lastSixArticles" :key="key">
       <router-link :to="{ name: 'post', params: { id: article.docID } }">
         <div class="flex flex-row gap-x-3">
           <div
@@ -22,15 +22,18 @@
 </template>
 
 <script setup lang="ts">
-import { getDocs, collection, getFirestore } from '@firebase/firestore';
-import { onBeforeMount, reactive } from 'vue';
+import { getDocs, collection, getFirestore, query } from '@firebase/firestore';
+import { computed, onBeforeMount, reactive } from 'vue';
 import { formatTime } from '@/plugins/formatTime';
 import type { Articles } from '@/interfaces/Article';
+import { orderBy } from 'firebase/firestore';
 
 const articles = reactive<Articles[]>([]);
+const lastSixArticles = computed(() => articles.slice(-6).reverse());
 
 const getArticles = async () => {
-  const snapshot = await getDocs(collection(getFirestore(), 'articles'));
+  const q = query(collection(getFirestore(), 'articles'), orderBy('date'));
+  const snapshot = await getDocs(q);
   snapshot.forEach((document) => {
     articles.push({
       docID: document.id,
