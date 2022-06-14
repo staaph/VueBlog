@@ -1,4 +1,4 @@
 export const formatTime = (timestamp: number) => {
   const date = new Date(timestamp);
-  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 };

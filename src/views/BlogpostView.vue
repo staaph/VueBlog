@@ -26,7 +26,6 @@ const router = useRouter();
 onMounted(async () => {
   const docID = route.params.id as string;
   const article = await getDoc(doc(getFirestore(), 'articles', docID));
-  console.log(article.data());
   if (!article.data()) {
     router.push({ name: 'error' });
   } else {
