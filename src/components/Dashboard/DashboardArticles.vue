@@ -5,6 +5,10 @@
       class="max-h-full w-full flex flex-col justify-center items-center"
     >
       <div
+        v-if="userArticles.length == 0"
+        v-text="'Your written articles will be display here'"
+      />
+      <div
         class="color overflow-auto justify-between w-1/2"
         v-for="(article, idx) in userArticles"
         :key="idx"

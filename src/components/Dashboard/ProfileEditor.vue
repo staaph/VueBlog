@@ -12,7 +12,16 @@
         <input type="text" class="input" v-model="username" />
       </section>
       <div class="flex items-center justify-end">
-        <button @click="changeUsername" class="button">Change username</button>
+        <button
+          @click="changeUsername"
+          class="button"
+          :class="{
+            'bg-green-600': success.username,
+            'bg-gray-800': !success.username,
+          }"
+        >
+          Change username
+        </button>
       </div>
       <!-- CHANGE EMAIL -->
       <section class="flex flex-row">
@@ -20,7 +29,16 @@
         <input type="text" class="input" v-model="newEmail" />
       </section>
       <div class="flex items-center justify-end">
-        <button @click="setNewMail" class="button">Change Email</button>
+        <button
+          @click="setNewMail"
+          class="button"
+          :class="{
+            'bg-green-600': success.email,
+            'bg-gray-800': !success.email,
+          }"
+        >
+          Change Email
+        </button>
       </div>
       <section class="flex flex-row items-center">
         <label for="pw-change" class="w-1/4">Change Password</label>
@@ -32,7 +50,16 @@
         />
       </section>
       <div class="flex items-center justify-end">
-        <button @click="changePassword" class="button">Change Password</button>
+        <button
+          @click="changePw"
+          class="button"
+          :class="{
+            'bg-green-600': success.password,
+            'bg-gray-800': !success.password,
+          }"
+        >
+          Change Password
+        </button>
       </div>
     </div>
     <!-- CONFIRM PASSWORD -->
@@ -53,7 +80,7 @@
 import { useFbUtil } from '@/composables/useFbUtils';
 import { updateDocument } from '@/composables/useFirestore';
 import { getAuth, updateProfile } from 'firebase/auth';
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 
 const {
   changeEmail,
@@ -66,22 +93,38 @@ const {
 const user = getAuth().currentUser;
 const username = ref(user!.displayName);
 const newEmail = ref<string>(getAuth().currentUser!.email!);
+const success = reactive({ username: false, email: false, password: false });
 
 const setNewMail = async () => {
-  await changeEmail(newEmail.value);
-  if (user && user.email) {
+  if (user && user.email && userProvidedPassword.value) {
+    await changeEmail(newEmail.value);
     newEmail.value = user.email;
+    success.email = true;
+  } else {
+    errorMsg.value = 'provide your password';
   }
 };
 
 const changeUsername = async () => {
-  if (user !== null) {
+  if (user !== null && userProvidedPassword.value) {
     await updateProfile(user, {
       displayName: username.value,
     });
     await updateDocument('users', user.uid, {
       username: username.value,
     });
+    success.username = true;
+  } else {
+    errorMsg.value = 'provide your password';
+  }
+};
+
+const changePw = () => {
+  if (user && userProvidedPassword.value) {
+    changePassword();
+    success.password = true;
+  } else {
+    errorMsg.value = 'provide your password';
   }
 };
 </script>
@@ -92,6 +135,6 @@ const changeUsername = async () => {
 }
 
 .button {
-  @apply bg-gray-800 rounded px-6 py-1 text-white;
+  @apply rounded px-6 py-1 text-white;
 }
 </style>

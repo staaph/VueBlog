@@ -1,4 +1,1 @@
-TODO check error on new password
-TODO user feedback on all inputs
-TODO show error on wrong docid query
 TODO get displayname by users id
